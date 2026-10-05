@@ -1,5 +1,5 @@
-/* Yandex Metrica — visitor statistics (counter 113420424). */
-const YM_ID=113420424;
+/* Yandex Metrica — visitor statistics (counter 113420525). */
+const YM_ID=113420525;
 (function(){
   if(!YM_ID)return;
   window.dataLayer=window.dataLayer||[];
