@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ru" class="intro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlantia STEM Olympiads — Казахстан</title>
+<link rel="canonical" href="https://atlantia-olympiads.kz/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atlantia-olympiads.kz/">
+<meta property="og:title" content="Atlantia STEM Olympiads — Казахстан">
+<meta property="og:description" content="Международные предметные олимпиады по математике, физике, информатике, химии и биологии для учащихся 3–11(12) классов. Мировой финал в Турции и Испании.">
+<meta property="og:image" content="https://atlantia-olympiads.kz/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Международные предметные олимпиады по математике, физике, информатике, химии и биологии для учащихся 3–11(12) классов. Мировой финал в Турции и Испании.">
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --abyss:#020B16;
+  --deep:#04162A;
+  --sea:#082640;
+  --reef:#0C3556;
+  --surface:rgba(255,255,255,.045);
+  --stroke:rgba(130,220,255,.14);
+  --text:#E9F6FC;
+  --muted:#8DA8BC;
+  --cyan:#2FE3D2;
+  --aqua:#5CE1FF;
+  --blue:#3D8BFF;
+  --violet:#8B6CFF;
+  --coral:#FF7A59;
+  --math:#3D8BFF;--phys:#8B6CFF;--info:#2FE3D2;--chem:#FF7A59;--bio:#6BE36B;
+  --grad:linear-gradient(100deg,#2FE3D2,#5CE1FF 40%,#3D8BFF 75%,#8B6CFF);
+  --display:'Unbounded',system-ui,sans-serif;
+  --sans:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --wrap:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--abyss);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html.lock body{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;letter-spacing:-.025em}
+h2{font-size:clamp(32px,4.4vw,60px)}
+h2 em,h3 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eye{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan)}
+.eye::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(47,227,210,.15),0 0 14px var(--cyan)}
+.lead{font-size:clamp(17px,1.5vw,19px);color:var(--muted);max-width:660px}
+section{position:relative;padding:130px 0}
+.head{display:flex;flex-direction:column;gap:20px;margin-bottom:60px}
+.head.c{align-items:center;text-align:center}
+.head.c .lead{margin:0 auto}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:17px 30px;border-radius:16px;font-weight:700;font-size:16px;border:0;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.btn svg{width:18px;height:18px;transition:transform .25s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-pri{background:var(--grad);background-size:160% 100%;color:#01121F;box-shadow:0 12px 40px -12px rgba(47,227,210,.6)}
+.btn-pri:hover{background-position:100% 0;box-shadow:0 18px 50px -10px rgba(92,225,255,.7)}
+.btn-glass{background:var(--surface);border:1px solid var(--stroke);color:var(--text);backdrop-filter:blur(10px)}
+.btn-glass:hover{border-color:var(--cyan)}
+
+/* nav */
+header{position:fixed;inset:0 0 auto;z-index:60;border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
+header.solid{background:rgba(2,11,22,.7);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);border-color:var(--stroke)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:78px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .lg-e{height:42px;width:auto}
+.logo .lg-w{height:16px;width:auto}
+.logo svg{width:38px;height:38px}
+.links{display:flex;gap:30px;font-size:14px;font-weight:600;color:var(--muted)}
+.links a{transition:color .2s}
+.links a:hover{color:var(--text)}
+.nav-r{display:flex;align-items:center;gap:14px}
+.lang{display:flex;border:1px solid var(--stroke);border-radius:12px;padding:3px;background:rgba(0,0,0,.25)}
+.lang button{background:none;border:0;padding:6px 11px;border-radius:9px;font-size:12px;font-weight:800;letter-spacing:.08em;cursor:pointer;color:var(--muted);transition:.2s}
+.lang button:hover{color:var(--text)}
+.lang button.on{background:var(--grad);color:#01121F}
+.nav-r>.btn{padding:11px 20px;font-size:14px;border-radius:12px}
+.burger{display:none;width:44px;height:44px;background:none;border:0;cursor:pointer}
+.burger span{display:block;width:22px;height:1.5px;background:var(--text);margin:6px auto;transition:.3s}
+.burger.x span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.x span:nth-child(2){opacity:0}
+.burger.x span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- hero ---------- */
+.hero{height:100vh;height:100svh;min-height:620px;padding:0;display:grid;place-items:center;overflow:hidden;background:var(--abyss)}
+.hero-bg{position:absolute;inset:-6%;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.55;animation:kb 30s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12) translate(1%,-1.5%)}}
+.hero-tint{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 50% at 50% 38%,rgba(47,227,210,.18),transparent 70%),linear-gradient(180deg,rgba(2,11,22,.55),rgba(4,22,42,.55) 40%,rgba(2,11,22,.92) 85%,var(--abyss))}
+.rays{position:absolute;inset:-20% -10% 0;z-index:1;pointer-events:none;background:repeating-conic-gradient(from 180deg at 50% -10%,rgba(160,240,255,.07) 0deg 3deg,transparent 3deg 11deg);mask-image:linear-gradient(180deg,#000 10%,transparent 70%);-webkit-mask-image:linear-gradient(180deg,#000 10%,transparent 70%);animation:sway 14s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+#bubbles{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}
+.ripples{position:absolute;left:50%;top:50%;z-index:2;width:10px;height:10px;pointer-events:none}
+.ripples i{position:absolute;left:50%;top:50%;width:120vmax;height:120vmax;margin:-60vmax 0 0 -60vmax;border-radius:50%;border:1px solid rgba(92,225,255,.35);opacity:0;transform:scale(0)}
+.lockup{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;text-align:center;padding:92px 16px 60px}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(47,227,210,.7)}70%,100%{box-shadow:0 0 0 12px rgba(47,227,210,0)}}
+.orbit{position:relative;width:min(210px,46vw,23vh);aspect-ratio:1;margin-block:calc(min(210px,46vw,23vh) * .42);will-change:transform}
+.orbit .ring{position:absolute;inset:-36%;border-radius:50%;border:1px dashed rgba(130,220,255,.22)}
+.orbit .spin{position:absolute;inset:-36%;animation:spin 50s linear infinite}
+.sat{position:absolute;width:18%;aspect-ratio:1;margin:-9%;min-height:0}
+.sat>div{position:absolute;inset:0;display:grid;place-items:center;border-radius:28%;background:rgba(4,22,42,.82);border:1px solid var(--stroke);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 8px 22px rgba(0,0,0,.35);animation:spin 50s linear infinite reverse}
+.sat svg{width:52%;height:auto;aspect-ratio:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.emblem{position:absolute;inset:0}
+.emblem svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.emblem img{position:absolute;inset:-12%;width:124%;height:124%;max-width:none;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
+.emblem .c1{fill:none;stroke:url(#ag);stroke-width:2.2}
+.emblem .wv{fill:none;stroke:url(#ag);stroke-width:3;stroke-linecap:round}
+.emblem .pk{fill:none;stroke:url(#ag);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.emblem .glow{fill:url(#rg)}
+.emblem .pulse{fill:none;stroke:#5CE1FF;stroke-width:1.5}
+.emblem.alive{animation:breathe 4.5s ease-in-out infinite}
+@keyframes breathe{50%{filter:drop-shadow(0 0 16px rgba(92,225,255,.55))}}
+.word{position:relative;font-family:var(--display);font-weight:800;font-size:min(12vw,10vh,128px);letter-spacing:.06em;line-height:1;margin:6px 0 0 .06em;display:flex}
+.waterline{position:absolute;left:-8%;right:-8%;bottom:.02em;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#5CE1FF 20%,#fff 50%,#5CE1FF 80%,transparent);box-shadow:0 0 18px 2px rgba(92,225,255,.7);pointer-events:none}
+.word .ch{display:inline-block;overflow:hidden;padding:.05em 0}
+.word .ch span{display:inline-block;background-image:linear-gradient(100deg,transparent 44%,rgba(255,255,255,.95) 50%,transparent 56%),linear-gradient(180deg,#FFFFFF 20%,#9FEFFF 70%,#3D8BFF);background-size:800% 100%,100% 100%;background-repeat:no-repeat;background-position:-100% 0,0 0;-webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform}
+.word-sub{margin-top:14px;font-family:var(--display);font-size:clamp(11px,1.3vw,14px);font-weight:500;letter-spacing:.5em;text-transform:uppercase;padding-left:.5em}
+.word-sub b{font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-tag{margin-top:20px;max-width:560px;color:rgba(233,246,252,.72);font-size:clamp(15px,1.4vw,17px)}
+.hero-rep{margin-top:26px;display:flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(233,246,252,.6)}
+.hero-rep img{height:22px;width:auto}
+.org .az{height:32px;width:auto;margin:16px 0 14px}
+.org .ad{height:62px;width:auto;margin:10px 0 12px}
+.foot-ad{height:52px;width:auto}
+.foot-az{display:flex;flex-direction:column;gap:8px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.foot-az img{height:30px;width:auto}
+.foot-logo{height:130px;width:auto}
+.foot{align-items:center}
+.cta-main{margin-top:32px;padding:20px 46px;font-size:18px;border-radius:18px}
+.cta-main::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-120%);animation:shine 3.6s ease-in-out 5s infinite}
+@keyframes shine{0%{transform:translateX(-120%)}35%,100%{transform:translateX(120%)}}
+.scroll-cue{position:absolute;z-index:4;bottom:110px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(233,246,252,.55)}
+.scroll-cue i{width:22px;height:34px;border:1.5px solid rgba(233,246,252,.4);border-radius:12px;position:relative}
+.scroll-cue i::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--cyan);animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{to{transform:translateY(12px);opacity:0}}
+.skip{position:absolute;z-index:5;right:24px;bottom:28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(233,246,252,.5);background:none;border:0;cursor:pointer}
+.waves{position:absolute;left:0;right:0;bottom:-2px;height:130px;z-index:3;pointer-events:none}
+.waves svg{position:absolute;bottom:0;width:200%;height:100%}
+.waves .w1{animation:drift 20s linear infinite;opacity:.35}
+.waves .w2{animation:drift 13s linear infinite reverse;opacity:.6}
+.waves .w3{animation:drift 28s linear infinite}
+@keyframes drift{to{transform:translateX(-50%)}}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--deep);border-block:1px solid var(--stroke);overflow:hidden;white-space:nowrap;padding:22px 0}
+.mq-track{display:inline-flex;animation:mq 34s linear infinite}
+.mq-track span{display:inline-flex;align-items:center;gap:36px;padding-right:36px;font-family:var(--display);font-size:clamp(20px,2.3vw,30px);font-weight:500}
+.mq-track span:nth-child(odd){color:transparent;-webkit-text-stroke:1px rgba(233,246,252,.55)}
+.mq-track span::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--grad)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ph{position:relative;border-radius:30px;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
+.about .ph{aspect-ratio:4/5}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(2,11,22,.6));pointer-events:none}
+.ph-badge{position:absolute;z-index:1;left:22px;right:22px;bottom:22px;display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:20px;background:rgba(2,11,22,.55);border:1px solid var(--stroke);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.ph-badge strong{font-family:var(--display);font-size:42px;line-height:1}
+.ph-badge span{font-size:14px;line-height:1.4;color:rgba(233,246,252,.8)}
+.about .lead+.lead{margin-top:16px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:90px}
+.stat{padding:28px 22px;border-radius:22px;border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(92,225,255,.07),rgba(255,255,255,.01))}
+.stat strong{display:block;font-family:var(--display);font-size:clamp(36px,3.8vw,52px);font-weight:600;line-height:1}
+.stat>span{display:block;margin-top:10px;font-size:14px;font-weight:600;color:var(--muted)}
+
+/* ---------- subjects accordion ---------- */
+.subjects{background:linear-gradient(180deg,var(--abyss),var(--deep))}
+.acc{display:flex;gap:12px;height:600px}
+.panel{--c:var(--cyan);position:relative;flex:1;min-width:0;border-radius:28px;overflow:hidden;cursor:pointer;transition:flex .8s cubic-bezier(.2,.8,.2,1);border:1px solid var(--stroke);outline:none}
+.panel.on{flex:3.4}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .8s}
+.panel:not(.on) img{filter:saturate(.4) brightness(.6)}
+.panel.on img{transform:scale(1)}
+.panel::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(2,11,22,.15) 0%,rgba(2,11,22,.25) 40%,rgba(2,11,22,.92) 100%)}
+.panel::after{content:"";position:absolute;inset:auto 0 0 0;height:4px;z-index:2;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .8s}
+.panel.on::after{transform:scaleX(1)}
+.panel .num{position:absolute;z-index:2;top:22px;left:24px;font-family:var(--display);font-size:13px;color:rgba(233,246,252,.7)}
+.panel .ic{position:absolute;z-index:2;top:18px;right:18px;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:var(--c);background:rgba(2,11,22,.55);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);backdrop-filter:blur(8px)}
+.panel .ic svg{width:26px;height:26px}
+.panel .txt{position:absolute;z-index:2;left:24px;right:24px;bottom:26px}
+.panel h3{font-size:clamp(20px,2vw,30px);white-space:nowrap}
+.panel p{max-width:360px;margin-top:10px;color:rgba(233,246,252,.78);opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+.panel.on p{opacity:1;transform:none;transition-delay:.25s}
+.panel:not(.on) h3{writing-mode:vertical-rl;transform:rotate(180deg);position:absolute;bottom:0;left:0}
+.panel:not(.on) .txt{bottom:24px;height:70%}
+
+/* ---------- statement ---------- */
+.statement{padding:170px 0 130px;background:var(--deep)}
+.statement .wrap>p{font-family:var(--display);font-weight:500;font-size:clamp(28px,4vw,56px);line-height:1.2;letter-spacing:-.02em;max-width:1100px}
+.fill{background:linear-gradient(90deg,var(--text) 50%,rgba(233,246,252,.13) 50%);background-size:200% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+.goals{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:90px}
+.goal{padding:28px 24px;border-radius:22px;border:1px solid var(--stroke);background:var(--surface);transition:translate .35s,border-color .35s}
+.goal:hover{translate:0 -6px;border-color:var(--cyan)}
+.goal b{display:block;font-family:var(--display);font-size:14px;color:var(--cyan);margin-bottom:18px}
+.goal p{font-weight:600;font-size:15px}
+.bens{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.ben{position:relative;padding:40px 32px;border-radius:26px;border:1px solid var(--stroke);background:linear-gradient(160deg,rgba(61,139,255,.14),rgba(255,255,255,.02) 60%);overflow:hidden;transition:translate .4s}
+.ben:hover{translate:0 -8px}
+.ben .n{font-family:var(--display);font-size:60px;font-weight:700;line-height:1;margin-bottom:26px}
+.ben h3{font-size:21px;margin-bottom:12px}
+.ben p{color:var(--muted)}
+
+/* ---------- stages ---------- */
+.stages-sec{background:var(--deep)}
+.stages{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stage{padding:46px;border-radius:32px;border:1px solid var(--stroke);background:var(--surface);position:relative;overflow:hidden}
+.stage.fin{background:linear-gradient(150deg,#0F3D66,#08213A 60%);border-color:rgba(47,227,210,.35)}
+.stage .lbl{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.stage h3{font-size:clamp(28px,2.8vw,40px);margin:14px 0 16px}
+.stage>p{color:var(--muted)}
+.months{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.months span{padding:10px 16px;border-radius:12px;background:rgba(47,227,210,.1);border:1px solid rgba(47,227,210,.3);font-weight:700;font-size:15px}
+.stage ul{list-style:none;display:grid;gap:12px;margin-top:26px}
+.stage li{display:flex;gap:12px;font-size:15.5px}
+.stage li::before{content:"";flex:none;width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--cyan)}
+.gate{display:flex;align-items:center;gap:18px;margin-top:28px;padding:20px 22px;border-radius:18px;background:linear-gradient(100deg,rgba(47,227,210,.18),rgba(61,139,255,.14));border:1px solid rgba(47,227,210,.3)}
+.gate strong{font-family:var(--display);font-size:36px;line-height:1}
+.gate span{font-weight:600;font-size:15px}
+.dests{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.dest{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden}
+.dest img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.dest:hover img{transform:scale(1.08)}
+.dest::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(2,11,22,.9))}
+.dest div{position:absolute;z-index:1;left:18px;right:18px;bottom:16px}
+.dest strong{display:block;font-family:var(--display);font-size:24px}
+.dest span{font-size:14px;font-weight:700;color:var(--cyan)}
+.stage .note{margin-top:20px;font-size:14px;color:rgba(233,246,252,.5)}
+.tline{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.tline-track{position:absolute;left:0;right:0;top:11px;height:2px;background:var(--stroke)}
+.tline-track i{position:absolute;inset:0;background:var(--grad);transform-origin:left;transform:scaleX(0)}
+.ti{position:relative;padding-top:42px}
+.ti::before{content:"";position:absolute;top:2px;left:0;width:20px;height:20px;border-radius:50%;background:var(--abyss);border:3px solid var(--cyan);box-shadow:0 0 16px rgba(47,227,210,.6)}
+.ti strong{display:block;font-family:var(--display);font-size:18px;margin-bottom:6px}
+.ti span{color:var(--muted);font-size:15px}
+
+/* ---------- depth categories ---------- */
+.depth{display:grid;gap:12px}
+.lvl{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:24px;padding:26px 32px;border-radius:22px;border:1px solid var(--stroke);transition:translate .35s,border-color .35s}
+.lvl:hover{translate:10px 0;border-color:var(--cyan)}
+.lvl:nth-child(1){background:linear-gradient(90deg,rgba(92,225,255,.22),rgba(92,225,255,.04))}
+.lvl:nth-child(2){background:linear-gradient(90deg,rgba(47,227,210,.18),rgba(47,227,210,.03));margin-left:3%}
+.lvl:nth-child(3){background:linear-gradient(90deg,rgba(61,139,255,.2),rgba(61,139,255,.03));margin-left:6%}
+.lvl:nth-child(4){background:linear-gradient(90deg,rgba(90,110,255,.2),rgba(90,110,255,.03));margin-left:9%}
+.lvl:nth-child(5){background:linear-gradient(90deg,rgba(139,108,255,.22),rgba(139,108,255,.03));margin-left:12%}
+.lvl .k{font-family:var(--display);font-size:44px;font-weight:700;line-height:1}
+.lvl .g{font-size:22px;font-weight:800}
+.lvl .d{font-size:14px;color:var(--muted)}
+.lvl .bar{display:flex;gap:5px}
+.lvl .bar i{width:8px;height:26px;border-radius:4px;background:rgba(233,246,252,.15)}
+.lvl .bar i.f{background:var(--grad)}
+
+/* ---------- format ---------- */
+.format{background:linear-gradient(180deg,var(--abyss),var(--deep))}
+.f-top{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end;margin-bottom:80px}
+.f-top .ph{aspect-ratio:16/11}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.fcell{padding:30px 24px;border-radius:22px;background:var(--sea);border:1px solid var(--stroke)}
+.fcell strong{display:block;font-family:var(--display);font-size:clamp(44px,4.6vw,64px);font-weight:600;line-height:1}
+.fcell span{display:block;margin-top:12px;color:var(--muted);font-size:15px}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rule{padding:30px;border-radius:22px;border:1px solid var(--stroke);background:var(--surface)}
+.rule h3{display:flex;align-items:center;gap:12px;font-size:18px;margin-bottom:16px}
+.rule h3 i{font-style:normal;flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:var(--sans);font-size:15px;font-weight:800}
+.rule.ok i{background:rgba(107,227,107,.18);color:var(--bio)}
+.rule.no i{background:rgba(255,122,89,.18);color:var(--coral)}
+.rule.inf i{background:rgba(61,139,255,.2);color:var(--aqua)}
+.rule ul{list-style:none;display:grid;gap:10px;color:var(--muted);font-size:15px}
+.rule li{position:relative;padding-left:18px}
+.rule li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.6}
+
+/* ---------- prizes ---------- */
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:end;margin-bottom:80px}
+.pod{text-align:center;padding:36px 26px;border-radius:28px;border:1px solid var(--stroke);background:var(--surface);transition:translate .4s}
+.pod:hover{translate:0 -8px}
+.pod.first{padding:56px 26px;background:linear-gradient(170deg,rgba(47,227,210,.24),rgba(61,139,255,.12) 50%,rgba(255,255,255,.02));border-color:rgba(47,227,210,.45);box-shadow:0 40px 80px -40px rgba(47,227,210,.45)}
+.pod .pl{font-family:var(--display);font-size:64px;font-weight:700;line-height:1}
+.pod.first .pl{font-size:92px}
+.pod svg{width:54px;height:54px;margin:18px auto;color:var(--aqua)}
+.pod h3{font-size:22px}
+.pod p{color:var(--muted);font-size:14px;margin-top:4px}
+.table-wrap{border-radius:24px;border:1px solid var(--stroke);background:var(--surface);overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:600px}
+th,td{padding:18px 24px;text-align:left}
+thead th{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--stroke)}
+tbody tr+tr td{border-top:1px solid var(--stroke)}
+tbody tr:hover{background:rgba(92,225,255,.04)}
+tbody td:first-child{font-weight:700}
+.bar{display:flex;align-items:center;gap:12px}
+.bar i{display:block;height:6px;border-radius:6px;background:var(--grad);width:calc(var(--v) * 1px);transform-origin:left}
+.bar b{font-family:var(--display);font-size:17px;font-weight:600;min-width:38px}
+.pnotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.pnotes div{font-size:15px;color:var(--muted);padding:18px 20px;border-radius:16px;border:1px dashed var(--stroke)}
+
+/* ---------- register ---------- */
+.reg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border-radius:32px;padding:50px;border:1px solid var(--stroke);background:var(--surface)}
+.card.hl{position:relative;overflow:hidden;background:linear-gradient(150deg,#0F3D66,#08213A);border-color:rgba(47,227,210,.4)}
+.card.hl::after{content:"";position:absolute;width:360px;height:360px;right:-140px;top:-140px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,227,210,.35),transparent);pointer-events:none}
+.steps{list-style:none;counter-reset:s;display:grid;gap:24px;margin-top:34px}
+.steps li{display:flex;gap:16px;counter-increment:s}
+.steps li::before{content:counter(s);flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:600;background:rgba(47,227,210,.12);color:var(--cyan);border:1px solid rgba(47,227,210,.3)}
+.steps strong{display:block;font-size:17px}
+.steps span{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px;position:relative;z-index:1}
+.chip{--c:var(--cyan);display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--stroke);background:rgba(2,11,22,.4);font-weight:700;font-size:14px;cursor:pointer;transition:.25s}
+.chip::before{content:"";width:10px;height:10px;border-radius:3px;border:1.5px solid var(--c);transition:.25s}
+.chip[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,transparent)}
+.chip[aria-pressed="true"]::before{background:var(--c)}
+.total{position:relative;z-index:1;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--stroke)}
+.total span{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.amount{font-family:var(--display);font-size:clamp(40px,4.6vw,62px);font-weight:700;line-height:1}
+.amount small{font-size:.45em;color:var(--cyan);margin-left:6px}
+.card.hl p{position:relative;z-index:1;color:var(--muted);font-size:15px;margin:18px 0 26px}
+.card.hl .btn{position:relative;z-index:1}
+
+/* ---------- orgs + faq ---------- */
+.orgs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.org{padding:34px;border-radius:24px;border:1px solid var(--stroke);background:var(--surface)}
+.org .r{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.org h3{font-size:24px;margin:12px 0 10px}
+.org p{color:var(--muted);font-size:15px}
+.faq{max-width:900px;margin:110px auto 0}
+details{border:1px solid var(--stroke);border-radius:18px;background:var(--surface);margin-bottom:12px;transition:border-color .3s,background .3s}
+details[open]{border-color:rgba(47,227,210,.4);background:rgba(47,227,210,.05)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 26px;font-weight:700;font-size:18px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:11px;height:11px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:rotate(45deg);margin-top:-6px;transition:transform .3s}
+details[open] summary::after{transform:rotate(225deg);margin-top:6px}
+details p{padding:0 26px 22px;color:var(--muted)}
+
+/* ---------- final ---------- */
+.final{height:90vh;min-height:560px;padding:0;display:grid;place-items:center;text-align:center;overflow:hidden}
+.final .bg{position:absolute;inset:-12% 0;z-index:0}
+.final .bg img{width:100%;height:100%;object-fit:cover}
+.final::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--deep) 0%,rgba(2,11,22,.55) 30%,rgba(2,11,22,.75) 100%)}
+.final .in{position:relative;z-index:2;padding:0 20px;max-width:880px}
+.final h2{font-size:clamp(36px,5.4vw,76px)}
+.final p{margin:22px auto 36px;max-width:560px;color:rgba(233,246,252,.78)}
+
+footer{border-top:1px solid var(--stroke);padding:46px 0;color:var(--muted);font-size:14px}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot strong{display:block;font-family:var(--display);font-size:15px;letter-spacing:.1em;color:var(--text);margin-bottom:4px}
+.foot a{color:var(--text);font-weight:700}
+.foot a:hover{color:var(--cyan)}
+.credit{margin-top:16px;font-size:12px;opacity:.6}
+
+html.intro .lockup>*:not(.orbit),html.intro header,html.intro .scroll-cue,html.intro .orbit .sat{opacity:0}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .links,.nav-r>.btn{display:none}
+  .burger{display:block}
+  .links.open{display:flex;position:fixed;top:78px;left:0;right:0;flex-direction:column;gap:22px;padding:28px 24px;background:rgba(2,11,22,.97);border-bottom:1px solid var(--stroke);font-size:20px;color:var(--text)}
+  .about,.f-top,.reg,.stages{grid-template-columns:1fr}
+  .about{gap:50px}
+  .about .ph{aspect-ratio:16/12}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .goals{grid-template-columns:1fr 1fr}
+  .acc{flex-direction:column;height:auto}
+  .panel{flex:none;height:110px;transition:height .7s cubic-bezier(.2,.8,.2,1)}
+  .panel.on{flex:none;height:340px}
+  .panel:not(.on) h3{writing-mode:horizontal-tb;transform:none;position:static}
+  .panel:not(.on) .txt{height:auto;bottom:22px}
+  .panel .num{display:none}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .rules,.bens{grid-template-columns:1fr 1fr}
+  .tline{grid-template-columns:1fr;gap:26px}
+  .tline-track{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .tline-track i{transform-origin:top;transform:scaleY(0)}
+  .ti{padding:0 0 0 44px}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  section{padding:90px 0}
+  .nav{height:68px}
+  .logo{font-size:14px}
+  .logo .lg-e{height:34px}
+  .logo .lg-w{height:13px}
+  .lang button{padding:5px 8px;font-size:11px}
+  .links.open{top:68px}
+  .stats{grid-template-columns:1fr 1fr}
+  .goals,.bens,.rules,.podium,.pnotes,.orgs{grid-template-columns:1fr}
+  .stage,.card{padding:30px 22px}
+  .dests{gap:10px}
+  .dest strong{font-size:20px}
+  .lvl{grid-template-columns:70px 1fr;padding:20px;gap:14px}
+  .lvl .k{font-size:32px}
+  .lvl .g{font-size:18px}
+  .lvl .bar{display:none}
+  .lvl:nth-child(n){margin-left:0}
+  .pod.first{order:-1}
+  .scroll-cue{bottom:90px}
+  .skip{right:16px;bottom:18px}
+  .word-sub{letter-spacing:.3em}
+  .hero-rep{flex-direction:column;gap:8px}
+}
+@media (max-height:760px),(max-width:680px){.scroll-cue{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ---------- WhatsApp consultation ---------- */
+.wa{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:12px;padding:8px 22px 8px 8px;border-radius:999px;background:#25D366;color:#fff;font-family:var(--sans);text-decoration:none;box-shadow:0 14px 34px -10px rgba(37,211,102,.75);transition:transform .25s,opacity .5s,box-shadow .25s}
+.wa:hover{transform:translateY(-3px);box-shadow:0 18px 40px -10px rgba(37,211,102,.9)}
+.wa-ic{position:relative;flex:none;width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.14);display:grid;place-items:center}
+.wa-ic svg{width:26px;height:26px;fill:#fff}
+.wa-ic::after{content:"";position:absolute;inset:0;border-radius:50%;animation:waPulse 2.2s infinite}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.65)}70%,100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+.wa-t{display:flex;flex-direction:column;line-height:1.15;text-align:left}
+.wa-t b{font-size:15px;font-weight:800}
+.wa-t small{font-size:12px;font-weight:600;opacity:.9}
+html.lock .wa{opacity:0;pointer-events:none;transform:translateY(24px)}
+.wa-link{white-space:nowrap}
+.wa.mini{padding:6px}
+.wa.mini .wa-t{display:none}
+@media (max-width:680px){.wa{right:12px;bottom:12px;gap:10px;padding:6px 16px 6px 6px}.wa-ic{width:40px;height:40px}.wa-ic svg{width:22px;height:22px}.wa-t b{font-size:13.5px}.wa-t small{font-size:11px}}
+
+.offer-note{display:block;position:relative;z-index:1;margin-top:16px;font-size:13px;line-height:1.5;opacity:.7}
+.offer-note a,.offer-link{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+.pay-row{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-kaspi{background:#F14635;color:#fff;box-shadow:0 14px 34px -14px rgba(241,70,53,.8)}
+.btn-kaspi:hover{background:#D63526}
+.btn-kaspi svg{width:20px;height:20px}
+.btn-kaspi:hover svg{transform:none}
+.pay-link{display:block;width:fit-content;margin-top:6px;font-weight:800;font-size:14px;color:#F14635;text-decoration:none}
+.pay-link:hover{text-decoration:underline}
+.steps .pay-link span{color:inherit;font-size:inherit}
+
+.soc{display:flex;flex-wrap:wrap;gap:10px}
+.soc a{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:12px;border:1px solid var(--stroke);background:var(--surface);color:var(--text);font-weight:800;font-size:14px;text-decoration:none;transition:border-color .25s,color .25s,translate .25s}
+.soc a:hover{border-color:var(--cyan);color:var(--cyan);translate:0 -2px}
+.soc svg{width:20px;height:20px}
+
+/* ---------- compact layout ---------- */
+.scroll-cue{display:none!important}
+section,.statement{padding:90px 0}
+.head{margin-bottom:40px;gap:16px}
+h2{font-size:clamp(28px,3.6vw,48px)}
+.goal-t{margin-top:28px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.goal-list{list-style:none;margin-top:14px;display:grid;gap:10px}
+.goal-list li{position:relative;padding-left:24px;font-weight:600;font-size:15.5px}
+.goal-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.about .ph{aspect-ratio:1/1}
+.acc{height:440px}
+.bens{margin-top:0}
+.ben{padding:30px 26px}.ben .n{font-size:44px;margin-bottom:16px}
+.stage{padding:36px}
+.tline{margin-top:50px}
+.depth{grid-template-columns:repeat(5,1fr);gap:12px}
+.depth .lvl{grid-template-columns:1fr;gap:10px;padding:22px 20px;margin-left:0;align-content:start}
+.depth .lvl:hover{translate:0 -6px}
+.lvl .k{font-size:36px}.lvl .g{font-size:18px}
+.f-top{margin-bottom:40px}
+.fcell{padding:24px 20px}.fcell strong{font-size:clamp(38px,3.8vw,52px)}
+.rule{padding:24px}
+.podium{margin-bottom:46px}
+.pod{padding:26px 22px}.pod.first{padding:38px 22px}.pod .pl{font-size:50px}.pod.first .pl{font-size:70px}
+th,td{padding:13px 22px}
+.card{padding:40px}
+.faq{margin-top:70px}
+summary{padding:17px 24px}
+.final{height:auto;min-height:0}.final .in{padding:110px 20px}
+.final h2{font-size:clamp(32px,4.4vw,60px)}
+@media (max-width:1080px){
+  .depth{grid-template-columns:repeat(3,1fr)}
+  .acc{height:auto}
+  .panel{height:84px}.panel.on{height:280px}
+}
+@media (max-width:680px){
+  section,.statement{padding:60px 0}
+  .head{margin-bottom:26px}
+  .about{gap:40px}
+  .bens{gap:10px}.ben{padding:22px}.ben .n{font-size:36px;margin-bottom:10px}
+  .stage,.card{padding:24px 20px}
+  .tline{margin-top:36px}
+  .depth{gap:8px}
+  .depth .lvl{padding:14px 12px;gap:4px}.lvl .k{font-size:26px}.lvl .g{font-size:14px}.lvl .d{display:none}
+  .f-top .ph{display:none}
+  .fgrid{gap:8px}.fcell{padding:16px 14px}
+  .rules{gap:10px}.rule{padding:20px}
+  .podium{grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:28px}
+  .pod,.pod.first{padding:16px 6px;order:0}
+  .pod .pl{font-size:34px}.pod.first .pl{font-size:46px}
+  .pod svg{width:28px;height:28px;margin:8px auto 6px}.pod h3{font-size:14px}.pod p{font-size:10.5px}
+  .orgs{gap:10px}.org{padding:22px}
+  .faq{margin-top:46px}
+  .final .in{padding:80px 16px}
+}
+@media (max-width:680px){
+  table{min-width:0}
+  th,td{padding:11px 10px}
+  thead th{font-size:10px;letter-spacing:.06em}
+  .bar i{display:none}
+  .bar b{font-size:15px;min-width:0}
+  tbody td:first-child{font-size:14px}
+}
+
+.about-r{display:flex;flex-direction:column;gap:22px}
+.doc-card{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:22px;background:var(--surface);border:1px solid var(--stroke);text-decoration:none;color:var(--text);transition:border-color .25s,translate .25s}
+.doc-card:hover{border-color:var(--cyan);translate:0 -3px}
+.doc-card .di{flex:none;width:52px;height:52px;border-radius:14px;background:var(--grad);color:#01121F;display:grid;place-items:center}
+.doc-card .di svg{width:26px;height:26px}
+.doc-card b{display:block;font-family:var(--display);font-weight:600;font-size:16px;line-height:1.25}
+.doc-card small{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+.doc-card .go{margin-left:auto;flex:none;width:22px;height:22px;color:var(--cyan)}
+.orgs{grid-template-columns:repeat(3,1fr)}
+@media (max-width:1080px){.orgs{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){.orgs{grid-template-columns:1fr}}
+</style>
+<script src="/assets/boot.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2FE3D2"/><stop offset=".5" stop-color="#5CE1FF"/><stop offset="1" stop-color="#3D8BFF"/></linearGradient>
+    <radialGradient id="rg" cx=".5" cy=".45" r=".5"><stop offset="0" stop-color="#5CE1FF" stop-opacity=".35"/><stop offset="1" stop-color="#5CE1FF" stop-opacity="0"/></radialGradient>
+    <symbol id="i-math" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 7h6M8 4v6M14 7h5M5 17l5-5M10 17l-5-5M14 15h5M14 19h5"/></symbol>
+    <symbol id="i-phys" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></g></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></symbol>
+    <symbol id="i-chem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10"/></symbol>
+    <symbol id="i-bio" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M7 3c0 6 10 6 10 12s-10 3-10 6M17 3c0 6-10 6-10 12M9 6h6M8 18h8M9 12h6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="logo" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="url(#ag)" stroke-width="4"/><path d="M26 44 L50 20 L74 44" fill="none" stroke="url(#ag)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 60c9-7 17-7 24 0s16 7 24 0 16-7 24 0" fill="none" stroke="url(#ag)" stroke-width="6" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Atlantia STEM Olympiad"><img class="lg-e" src="/assets/img/atlantia-emblem.webp" alt="" width="520" height="525"><img class="lg-w" src="/assets/img/atlantia-wordmark-light.webp" alt="Atlântia" width="719" height="114"></a>
+    <nav class="links" id="links">
+      <a href="#subjects" data-i="nav.subj">Предметы</a>
+      <a href="/polozhenie" data-i="nav.doc">Положение</a>
+      <a href="#stages" data-i="nav.stages">Этапы</a>
+      <a href="#format" data-i="nav.format">Формат</a>
+      <a href="#prizes" data-i="nav.prizes">Призы</a>
+      <a href="#faq" data-i="nav.faq">Вопросы</a>
+    </nav>
+    <div class="nav-r">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="kk">KZ</button><button data-lang="ru" class="on">RU</button><button data-lang="en">EN</button>
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfF8_fUPFQGo9sUSuAPn2UjY1lyZDHb0lZazsxzeZyiAot3hg/viewform" target="_blank" rel="noopener noreferrer" data-reg class="btn btn-pri" data-i="nav.reg">Регистрация</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO / INTRO ================= -->
+<section class="hero" id="top">
+  <div class="hero-bg"><img fetchpriority="high" decoding="async" src="https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=2000&q=70" alt=""></div>
+  <div class="rays"></div>
+  <div class="hero-tint"></div>
+  <canvas id="bubbles" aria-hidden="true"></canvas>
+  <div class="ripples" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <div class="lockup">
+    <div class="orbit" id="orbit">
+      <div class="ring"></div>
+      <div class="spin">
+        <div class="sat" style="left:50%;top:0;color:var(--bio)"><div><svg><use href="#i-bio"/></svg></div></div>
+        <div class="sat" style="left:97.6%;top:34.5%;color:var(--phys)"><div><svg><use href="#i-phys"/></svg></div></div>
+        <div class="sat" style="left:79.4%;top:90.5%;color:var(--math)"><div><svg><use href="#i-math"/></svg></div></div>
+        <div class="sat" style="left:20.6%;top:90.5%;color:var(--chem)"><div><svg><use href="#i-chem"/></svg></div></div>
+        <div class="sat" style="left:2.4%;top:34.5%;color:var(--info)"><div><svg><use href="#i-info"/></svg></div></div>
+      </div>
+      <div class="emblem" id="emblem" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><circle class="glow" cx="50" cy="50" r="50"/><circle class="pulse" cx="50" cy="50" r="46"/></svg>
+        <img id="embImg" src="/assets/img/atlantia-emblem-centered.webp" alt="" width="524" height="582">
+      </div>
+    </div>
+    <h1 class="word" id="word" aria-label="Atlantia">ATLANTIA</h1>
+    <div class="word-sub">STEM <b>Olympiads</b></div>
+    <p class="hero-tag" data-i="hero.tag">Международные олимпиады по математике, физике, информатике, химии и биологии для 3–11(12) классов</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfF8_fUPFQGo9sUSuAPn2UjY1lyZDHb0lZazsxzeZyiAot3hg/viewform" target="_blank" rel="noopener noreferrer" data-reg class="btn btn-pri cta-main" id="ctaMain"><span data-i="hero.cta">Участвуй</span><svg><use href="#i-arrow"/></svg></a>
+    <div class="hero-rep"><span data-i="hero.rep">Официальный представитель в Казахстане</span><img src="/assets/img/azgroup-light.webp" alt="AZ GROUP Education Company" width="1200" height="107"></div>
+  </div>
+
+  <div class="scroll-cue"><i></i><span data-i="hero.scroll">Погрузиться</span></div>
+  <button class="skip" id="skip" data-i="hero.skip">Пропустить</button>
+  <div class="waves" aria-hidden="true">
+    <svg class="w1" viewBox="0 0 2880 130" preserveAspectRatio="none"><path fill="#0C3556" d="M0 60 Q360 10 720 60 T1440 60 T2160 60 T2880 60 V130 H0Z"/></svg>
+    <svg class="w2" viewBox="0 0 2880 130" preserveAspectRatio="none"><path fill="#082640" d="M0 80 Q360 35 720 80 T1440 80 T2160 80 T2880 80 V130 H0Z"/></svg>
+    <svg class="w3" viewBox="0 0 2880 130" preserveAspectRatio="none"><path fill="#04162A" d="M0 100 Q360 68 720 100 T1440 100 T2160 100 T2880 100 V130 H0Z"/></svg>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span data-i="m.n">Математика</span><span data-i="p.n">Физика</span><span data-i="i.n">Информатика</span><span data-i="c.n">Химия</span><span data-i="b.n">Биология</span><span data-i="mq.f">Мировой финал</span>
+    <span data-i="m.n">Математика</span><span data-i="p.n">Физика</span><span data-i="i.n">Информатика</span><span data-i="c.n">Химия</span><span data-i="b.n">Биология</span><span data-i="mq.f">Мировой финал</span>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section style="background:var(--deep)">
+  <div class="wrap">
+    <div class="about">
+      <div>
+        <div class="head" style="margin-bottom:28px">
+          <span class="eye" data-r data-i="about.eye">Об олимпиадах</span>
+          <h2 data-r data-i="about.h">Пять наук. <em>Одна большая цель.</em></h2>
+        </div>
+        <p class="lead" data-r data-i="about.p1">Atlantia STEM Olympiads — престижные международные предметные олимпиады, которые проводятся более чем в 30 странах мира. В Казахстане они проходят в два этапа: республиканский — в городах страны, и мировой финал — в Турции или Испании.</p>
+        <p class="lead" data-r data-i="about.p2">Цель — развитие интеллектуального и творческого потенциала учащихся и создание условий для их самореализации в науке и образовании.</p>
+        <p class="goal-t" data-r data-i="goals.t">Задачи олимпиад</p>
+        <ul class="goal-list" data-r>
+          <li data-i="g1">Стимулировать интерес к естественно-научным дисциплинам</li>
+          <li data-i="g2">Выявлять и поддерживать одарённых учащихся</li>
+          <li data-i="g3">Формировать конкурентоспособное портфолио</li>
+          <li data-i="g4">Развивать международное сотрудничество в образовании</li>
+        </ul>
+      </div>
+      <div class="about-r">
+        <a class="doc-card" href="/polozhenie" data-r><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span><b data-i="doc.t">Положение об олимпиадах</b><small data-i="doc.s">Официальный документ · сезон 2026–2027</small></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <div class="ph" data-clip>
+          <img data-par src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=1400&q=75" alt="" loading="lazy" decoding="async">
+          <div class="ph-badge"><strong class="grad">30+</strong><span data-i="about.badge">стран мира проводят олимпиады Atlantia</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SUBJECTS ================= -->
+<section class="subjects" id="subjects">
+  <div class="wrap">
+    <div class="head">
+      <span class="eye" data-r data-i="subj.eye">Предметы</span>
+      <h2 data-r data-i="subj.h">Выбери <em>свою глубину</em></h2>
+      <p class="lead" data-r data-i="subj.p">Сдавайте один или несколько предметов — но не более двух в один день. Призовые места по разным предметам дают право на несколько наград.</p>
+    </div>
+    <div class="acc" id="acc" data-r>
+      <div class="panel on" tabindex="0" style="--c:var(--math)"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=70" alt="" loading="lazy" decoding="async"><span class="num">01</span><span class="ic"><svg><use href="#i-math"/></svg></span><div class="txt"><h3 data-i="m.n">Математика</h3><p data-i="m.d">Логика, алгебра, геометрия и нестандартные задачи</p></div></div>
+      <div class="panel" tabindex="0" style="--c:var(--phys)"><img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=1400&q=70" alt="" loading="lazy" decoding="async"><span class="num">02</span><span class="ic"><svg><use href="#i-phys"/></svg></span><div class="txt"><h3 data-i="p.n">Физика</h3><p data-i="p.d">Законы природы, эксперимент и точный расчёт</p></div></div>
+      <div class="panel" tabindex="0" style="--c:var(--info)"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=70" alt="" loading="lazy" decoding="async"><span class="num">03</span><span class="ic"><svg><use href="#i-info"/></svg></span><div class="txt"><h3 data-i="i.n">Информатика</h3><p data-i="i.d">Алгоритмы, логика и вычислительное мышление</p></div></div>
+      <div class="panel" tabindex="0" style="--c:var(--chem)"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1400&q=70" alt="" loading="lazy" decoding="async"><span class="num">04</span><span class="ic"><svg><use href="#i-chem"/></svg></span><div class="txt"><h3 data-i="c.n">Химия</h3><p data-i="c.d">Вещества, реакции и их закономерности</p></div></div>
+      <div class="panel" tabindex="0" style="--c:var(--bio)"><img src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?auto=format&fit=crop&w=1400&q=70" alt="" loading="lazy" decoding="async"><span class="num">05</span><span class="ic"><svg><use href="#i-bio"/></svg></span><div class="txt"><h3 data-i="b.n">Биология</h3><p data-i="b.d">Живые системы — от клетки до экосистемы</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATEMENT + GOALS + BENEFITS ================= -->
+<section class="statement">
+  <div class="wrap">
+    <div class="head">
+      <span class="eye" data-r data-i="ben.eye">Преимущества</span>
+      <h2 data-r data-i="ben.h">Зачем <em>участвовать</em></h2>
+    </div>
+    <div class="bens">
+      <div class="ben" data-r><div class="n grad">50%+</div><h3 data-i="b1.h">Путь в мировой финал</h3><p data-i="b1.p">Более 50% правильных ответов на республиканском этапе — и вы проходите в мировой финал за рубежом.</p></div>
+      <div class="ben" data-r><div class="n grad">★</div><h3 data-i="b2.h">Международные дипломы</h3><p data-i="b2.p">Сертификаты и дипломы, подтверждающие высокий уровень знаний и помогающие при поступлении в зарубежные школы и университеты.</p></div>
+      <div class="ben" data-r><div class="n grad">×5</div><h3 data-i="b3.h">Несколько наград</h3><p data-i="b3.p">Сдавайте разные предметы и претендуйте на призы по каждому из них.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGES ================= -->
+<section class="stages-sec" id="stages">
+  <div class="wrap">
+    <div class="head">
+      <span class="eye" data-r data-i="stg.eye">Этапы</span>
+      <h2 data-r data-i="stg.h">От родного города — <em>к мировому финалу</em></h2>
+    </div>
+    <div class="stages">
+      <div class="stage" data-r>
+        <span class="lbl" data-i="s1.lbl">Этап 01</span>
+        <h3 data-i="s1.h">Республиканский</h3>
+        <p data-i="s1.p">Очно в городах Казахстана. Возможно проведение на базе школы — только для её учеников.</p>
+        <div class="months"><span data-i="mo.range">Октябрь 2026 — Март 2027</span></div>
+        <ul>
+          <li data-i="s1.l1">Место и время — не менее чем за 3 дня на e-mail и в соцсетях AZ GROUP</li>
+          <li data-i="s1.l2">Можно пересдать предмет — засчитывается лучший результат</li>
+          <li data-i="s1.l3">Баллы публикуются на atlantia-olympiads.kz в течение 15 рабочих дней</li>
+        </ul>
+        <div class="gate"><strong class="grad">&gt;50%</strong><span data-i="pass">правильных ответов — проходной балл в мировой финал</span></div>
+      </div>
+      <div class="stage fin" data-r>
+        <span class="lbl" data-i="s2.lbl">Этап 02</span>
+        <h3 data-i="s2.h">Мировой финал</h3>
+        <p data-i="s2.p">Финалисты сами выбирают страну. Поездку участников из Казахстана организует AZ GROUP LLC.</p>
+        <div class="dests">
+          <div class="dest"><img src="https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?auto=format&fit=crop&w=900&q=75" alt="" loading="lazy" decoding="async"><div><strong data-i="tr">Турция</strong><span data-i="jan">Январь 2027</span></div></div>
+          <div class="dest"><img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=900&q=75" alt="" loading="lazy" decoding="async"><div><strong data-i="es">Испания</strong><span data-i="may">Май 2027</span></div></div>
+        </div>
+        <p class="note" data-i="s2.note">Участие в финале — только через AZ GROUP LLC; расходы участники покрывают самостоятельно по программе организаторов.</p>
+      </div>
+    </div>
+    <div class="tline" id="tline">
+      <div class="tline-track"><i id="tlFill"></i></div>
+      <div class="ti" data-r><strong data-i="tl1.d">Окт — Мар</strong><span data-i="tl1.t">Республиканский этап в городах Казахстана</span></div>
+      <div class="ti" data-r><strong data-i="jan">Январь 2027</strong><span data-i="tl2.t">Мировой финал — Турция</span></div>
+      <div class="ti" data-r><strong data-i="apr">Апрель 2027</strong><span data-i="tl3.t">Общие результаты на atlantia-olympiads.kz · Награждение в Астане</span></div>
+      <div class="ti" data-r><strong data-i="may">Май 2027</strong><span data-i="tl4.t">Мировой финал — Испания</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section>
+  <div class="wrap">
+    <div class="head">
+      <span class="eye" data-r data-i="cat.eye">Участники</span>
+      <h2 data-r data-i="cat.h">Пять уровней <em>погружения</em></h2>
+      <p class="lead" data-r data-i="cat.p">Для учащихся государственных и частных школ Казахстана. Каждый соревнуется строго в своей категории.</p>
+    </div>
+    <div class="depth">
+      <div class="lvl" data-r><div class="k grad">A1</div><div><div class="g" data-i="g34">3–4 класс</div><div class="d" data-i="c1">Первая категория</div></div><div class="bar"><i class="f"></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="lvl" data-r><div class="k grad">A2</div><div><div class="g" data-i="g56">5–6 класс</div><div class="d" data-i="c2">Вторая категория</div></div><div class="bar"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div></div>
+      <div class="lvl" data-r><div class="k grad">A3</div><div><div class="g" data-i="g78">7–8 класс</div><div class="d" data-i="c3">Третья категория</div></div><div class="bar"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div></div>
+      <div class="lvl" data-r><div class="k grad">A4</div><div><div class="g" data-i="g910">9–10 класс</div><div class="d" data-i="c4">Четвёртая категория</div></div><div class="bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div></div>
+      <div class="lvl" data-r><div class="k grad">A5</div><div><div class="g" data-i="g1112">11(12) класс</div><div class="d" data-i="c5">Пятая категория</div></div><div class="bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMAT ================= -->
+<section class="format" id="format">
+  <div class="wrap">
+    <div class="f-top">
+      <div class="head" style="margin:0">
+        <span class="eye" data-r data-i="fmt.eye">Формат</span>
+        <h2 data-r data-i="fmt.h">Как проходит <em>олимпиада</em></h2>
+        <p class="lead" data-r data-i="fmt.p">Очно, в два потока в один день. Задания соответствуют программам официальных международных олимпиад и разработаны при участии академиков и преподавателей из Европы и Казахстана.</p>
+      </div>
+      <div class="ph" data-clip><img data-par src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=75" alt="" loading="lazy" decoding="async"></div>
+    </div>
+    <div class="fgrid">
+      <div class="fcell" data-r><strong class="grad" data-count="20">0</strong><span data-i="f1">заданий с 4–5 вариантами ответа</span></div>
+      <div class="fcell" data-r><strong class="grad" data-count="60">0</strong><span data-i="f2">минут на выполнение</span></div>
+      <div class="fcell" data-r><strong class="grad" data-count="3">0</strong><span data-i="f3">языка: казахский, русский, английский</span></div>
+      <div class="fcell" data-r><strong class="grad" data-count="2">0</strong><span data-i="f4">предмета максимум в один день</span></div>
+    </div>
+    <div class="rules">
+      <div class="rule ok" data-r><h3><i>✓</i><span data-i="ok.h">Можно взять</span></h3><ul><li data-i="ok.1">Шариковую ручку чёрного или синего цвета</li><li data-i="ok.2">Воду в прозрачной бутылке</li></ul></div>
+      <div class="rule no" data-r><h3><i>✕</i><span data-i="no.h">Запрещено</span></h3><ul><li data-i="no.1">Черновики, книги и учебники</li><li data-i="no.2">Телефоны, планшеты, калькуляторы и любые гаджеты</li><li data-i="no.3">Копирование и съёмка заданий — дисквалификация</li></ul></div>
+      <div class="rule inf" data-r><h3><i>i</i><span data-i="inf.h">Важно</span></h3><ul><li data-i="inf.1">Приходите за 30 минут до начала</li><li data-i="inf.2">Опоздание до 30 минут — допуск только на оставшееся время</li><li data-i="inf.3">Ответы закрашиваются в бланке чётко и полностью</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIZES ================= -->
+<section id="prizes" style="background:var(--deep)">
+  <div class="wrap">
+    <div class="head c">
+      <span class="eye" data-r data-i="pr.eye">Награды</span>
+      <h2 data-r data-i="pr.h">Призы <em>республиканского этапа</em></h2>
+      <p class="lead" data-r data-i="pr.p">Все участники получают электронный сертификат, победители и призёры — дипломы. Торжественное награждение — в апреле 2027 года в Астане.</p>
+    </div>
+    <div class="podium">
+      <div class="pod"><div class="pl">2</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="16" r="4"/><circle cx="18" cy="16" r="4"/><path d="M6 16l4-7h5l3 7M10 9l2 7M13.5 6h2.5"/></svg><h3 data-i="p2">Велосипед</h3><p data-i="d2">Диплом II степени</p></div>
+      <div class="pod first"><div class="pl grad">1</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><h3 data-i="p1">Планшет</h3><p data-i="d1">Диплом I степени</p></div>
+      <div class="pod"><div class="pl">3</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="7" width="8" height="10" rx="2.5"/><path d="M9.5 7V3h5v4M9.5 17v4h5v-4M12 10v2.2l1.3.8"/></svg><h3 data-i="p3">Смарт-браслет</h3><p data-i="d3">Диплом III степени</p></div>
+    </div>
+    <div class="table-wrap" data-r>
+      <table>
+        <thead><tr><th data-i="th.c">Категория</th><th data-i="th.1">1 место</th><th data-i="th.2">2 место</th><th data-i="th.3">3 место</th></tr></thead>
+        <tbody>
+          <tr><td data-i="g34">3–4 класс</td><td><div class="bar"><b>95+</b><i style="--v:95"></i></div></td><td><div class="bar"><b>90+</b><i style="--v:90"></i></div></td><td><div class="bar"><b>85+</b><i style="--v:85"></i></div></td></tr>
+          <tr><td data-i="g56">5–6 класс</td><td><div class="bar"><b>90+</b><i style="--v:90"></i></div></td><td><div class="bar"><b>85+</b><i style="--v:85"></i></div></td><td><div class="bar"><b>80+</b><i style="--v:80"></i></div></td></tr>
+          <tr><td data-i="g78">7–8 класс</td><td><div class="bar"><b>90+</b><i style="--v:90"></i></div></td><td><div class="bar"><b>85+</b><i style="--v:85"></i></div></td><td><div class="bar"><b>80+</b><i style="--v:80"></i></div></td></tr>
+          <tr><td data-i="g910">9–10 класс</td><td><div class="bar"><b>85+</b><i style="--v:85"></i></div></td><td><div class="bar"><b>80+</b><i style="--v:80"></i></div></td><td><div class="bar"><b>75+</b><i style="--v:75"></i></div></td></tr>
+          <tr><td data-i="g1112">11(12) класс</td><td><div class="bar"><b>85+</b><i style="--v:85"></i></div></td><td><div class="bar"><b>80+</b><i style="--v:80"></i></div></td><td><div class="bar"><b>75+</b><i style="--v:75"></i></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pnotes">
+      <div data-r data-i="pn1">Минимальный балл для призового места — по каждому предмету в своей категории. Количество призовых мест зависит от числа участников.</div>
+      <div data-r data-i="pn2">При равных баллах приоритет у участника, который учится на класс ниже.</div>
+      <div data-r data-i="pn3">Призы не заменяются деньгами и должны быть получены в течение месяца.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REGISTER ================= -->
+<section id="register">
+  <div class="wrap reg">
+    <div class="card" data-r>
+      <span class="eye" data-i="reg.eye">Регистрация</span>
+      <h2 style="margin-top:16px;font-size:clamp(28px,3vw,42px)" data-i="reg.h">Три шага <em>до олимпиады</em></h2>
+      <ol class="steps">
+        <li><div><strong data-i="r1.h">Регистрация на этом сайте</strong><span data-i="r1.p">Нажмите «Участвуй» — откроется форма; выберите категорию, предметы и город</span></div></li>
+        <li><div><strong data-i="r2.h">Оплата через Kaspi</strong><span data-i="r2.p">Безналичный перевод на счёт AZ GROUP LLC, г. Астана</span><a class="pay-link" href="https://kaspi.kz/pay/_gate?action=service_with_subservice&amp;service_id=3025&amp;subservice_id=22909&amp;region_id=19" target="_blank" rel="noopener noreferrer" data-pay><span data-i="pay.link">Оплатить в Kaspi</span> →</a></div></li>
+        <li><div><strong data-i="r3.h">Олимпиада</strong><span data-i="r3.p">Место и время придут на e-mail минимум за 3 дня</span></div></li>
+      </ol>
+    </div>
+    <div class="card hl" data-r>
+      <span class="eye" data-i="calc.h">Рассчитайте стоимость</span>
+      <div class="chips" id="chips">
+        <button class="chip" aria-pressed="true" style="--c:var(--math)" data-i="m.n">Математика</button>
+        <button class="chip" aria-pressed="false" style="--c:var(--phys)" data-i="p.n">Физика</button>
+        <button class="chip" aria-pressed="false" style="--c:var(--info)" data-i="i.n">Информатика</button>
+        <button class="chip" aria-pressed="false" style="--c:var(--chem)" data-i="c.n">Химия</button>
+        <button class="chip" aria-pressed="false" style="--c:var(--bio)" data-i="b.n">Биология</button>
+      </div>
+      <div class="total"><span data-i="calc.total">Итого</span><div class="amount"><span id="sum">25 000</span><small>₸</small></div></div>
+      <p data-i="price.p">25 000 ₸ за каждый предмет. Оплата покрывает проведение олимпиады, разработку заданий, церемонию награждения и призовой фонд. После проведения олимпиады оплата не возвращается.</p>
+      <div class="pay-row"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfF8_fUPFQGo9sUSuAPn2UjY1lyZDHb0lZazsxzeZyiAot3hg/viewform" target="_blank" rel="noopener noreferrer" data-reg class="btn btn-pri"><span data-i="price.cta">Перейти к регистрации</span><svg><use href="#i-arrow"/></svg></a><a href="https://kaspi.kz/pay/_gate?action=service_with_subservice&amp;service_id=3025&amp;subservice_id=22909&amp;region_id=19" target="_blank" rel="noopener noreferrer" data-pay class="btn btn-kaspi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg><span data-i="pay.btn">Оплатить через Kaspi</span></a></div>
+      <small class="offer-note" data-i="price.offer">Оплачивая участие, вы принимаете условия <a href="/oferta">публичной оферты</a>.</small>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORGS + FAQ ================= -->
+<section id="faq" style="background:var(--deep)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eye" data-r data-i="org.eye">Организаторы</span>
+      <h2 data-r data-i="org.h">Кто проводит <em>олимпиады</em></h2>
+    </div>
+    <div class="orgs">
+      <div class="org" data-r><span class="r" data-i="o1.r">Организатор</span><h3>Atlantia International Olympiads</h3><p data-i="o1.p">Международная компания с представительством в Барселоне, Испания.</p></div>
+      <div class="org" data-r><span class="r" data-i="o2.r">Официальный представитель в РК</span><img class="az" src="/assets/img/azgroup-light.webp" alt="AZ GROUP Education Company" width="1200" height="107" loading="lazy"><p data-i="o2.p">Координатор олимпиад в Казахстане: общее руководство республиканским этапом и организация поездки на мировой финал.</p></div>
+      <div class="org" data-r><span class="r" data-i="o3.r">Соорганизатор</span><img class="ad" src="/assets/img/astana-daryny.webp" alt="Astana Daryny" width="700" height="377" loading="lazy"><p data-i="o3.p">Центр по выявлению и поддержке одарённых детей и талантливой молодёжи.</p></div>
+    </div>
+    <div class="faq">
+      <div class="head c" style="margin-bottom:40px">
+        <span class="eye" data-r data-i="faq.eye">Вопросы</span>
+        <h2 data-r data-i="faq.h">Частые <em>вопросы</em></h2>
+      </div>
+      <div data-r>
+        <details><summary data-i="q1">Сколько предметов можно сдать?</summary><p data-i="a1">Сколько угодно — каждый предмет оплачивается отдельно, но не более двух предметов в один день в рамках открытой регистрации.</p></details>
+        <details><summary data-i="q2">Можно ли пересдать тот же предмет?</summary><p data-i="a2">Да, за отдельную плату. Учитывается наивысший балл; по одному предмету можно занять только одно призовое место.</p></details>
+        <details><summary data-i="q3">Можно ли выиграть несколько призов?</summary><p data-i="a3">Да — если вы заняли призовые места по разным предметам.</p></details>
+        <details><summary data-i="q4">На каком языке проходит олимпиада?</summary><p data-i="a4">На выбор участника: казахский, русский или английский.</p></details>
+        <details><summary data-i="q5">Можно ли подать апелляцию?</summary><p data-i="a5">Нет. Расшифровка результатов не предоставляется, апелляция не предусмотрена.</p></details>
+        <details><summary data-i="q6">Возвращается ли оплата?</summary><p data-i="a6">После проведения олимпиады — нет. При форс-мажоре можно сдать олимпиаду в другую дату или в другом городе в рамках открытой регистрации.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL ================= -->
+<section class="final">
+  <div class="bg"><img data-par2 src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=2000&q=70" alt="" loading="lazy" decoding="async"></div>
+  <div class="in" data-r>
+    <h2 data-i="fin.h">Погрузитесь в науку <em>глубже</em></h2>
+    <p data-i="fin.p">Выберите предмет, зарегистрируйтесь на республиканский этап и начните путь к мировому финалу.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfF8_fUPFQGo9sUSuAPn2UjY1lyZDHb0lZazsxzeZyiAot3hg/viewform" target="_blank" rel="noopener noreferrer" data-reg class="btn btn-pri cta-main" style="margin-top:0"><span data-i="hero.cta">Участвуй</span><svg><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <img class="foot-logo" src="/assets/img/atlantia-logo-light.webp" alt="Atlântia STEM Olympiad" width="720" height="735" loading="lazy">
+      <div class="foot-az"><span data-i="hero.rep">Официальный представитель в Казахстане</span><img src="/assets/img/azgroup-light.webp" alt="AZ GROUP Education Company" width="1200" height="107" loading="lazy"></div>
+      <img class="foot-ad" src="/assets/img/astana-daryny.webp" alt="Astana Daryny" width="700" height="377" loading="lazy">
+      <div class="soc"><a href="https://www.instagram.com/atlantia.olympiads.kz" target="_blank" rel="noopener noreferrer" data-soc="instagram" aria-label="Instagram: @atlantia.olympiads.kz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><span>@atlantia.olympiads.kz</span></a></div>
+      <div><strong>ATLANTIA STEM OLYMPIADS</strong><span data-i="foot.rep">Официальный представитель в Республике Казахстан — AZ GROUP LLC, г. Астана</span></div>
+      <div><a href="https://az-group.kz" target="_blank" rel="noopener noreferrer">az-group.kz</a> · <a class="wa-link" data-wa href="https://wa.me/77770888844" target="_blank" rel="noopener noreferrer">WhatsApp: +7 777 088 88 44</a> · <a href="mailto:info@az-group.kz">info@az-group.kz</a><br><a class="offer-link" href="/polozhenie" data-i="nav.doc">Положение</a> · <a class="offer-link" href="/oferta" data-i="foot.offer">Публичная оферта</a><br>© 2026 AZ GROUP LLC</div>
+    </div>
+    <div class="credit" data-i="foot.photo">Фото: Unsplash</div>
+  </div>
+</footer>
+
+<a class="wa" data-wa href="https://wa.me/77770888844" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <span class="wa-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+  <span class="wa-t"><b data-i="wa.label">Получить консультацию</b><small data-i="wa.sub">в WhatsApp</small></span>
+</a>
+
+<script src="/assets/vendor/gsap.min.js" defer></script>
+<script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/app.js" defer></script>
+<script src="/assets/metrika.js" defer></script>
+</body>
+</html>
