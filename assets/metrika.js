@@ -23,6 +23,7 @@ const YM_ID=113420525;
     else if(href==='/oferta')goal('offer_open');
     else if(href==='/polozhenie')goal('regulations_open');
     else if(href.startsWith('mailto:'))goal('email_click');
+    else if(a.matches('.vid-play'))goal('video_play');
     else if(a.matches('.lang button'))goal('lang_'+a.dataset.lang);
   });
 })();

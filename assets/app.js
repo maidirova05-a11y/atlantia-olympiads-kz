@@ -24,7 +24,7 @@ const T={
 "about.eye":["Олимпиадалар туралы","About"],"about.h":["Бес ғылым. <em>Бір үлкен мақсат.</em>","Five sciences. <em>One big goal.</em>"],
 "about.p1":["Atlantia STEM Olympiads — әлемнің 30-дан астам елінде өтетін беделді халықаралық пәндік олимпиадалар. Қазақстанда олар екі кезеңнен тұрады: республикалық кезең — еліміздің қалаларында, әлемдік финал — Түркияда немесе Испанияда.","Atlantia STEM Olympiads are prestigious international subject olympiads held in more than 30 countries. In Kazakhstan they run in two stages: the national round in cities across the country and the World Final in Türkiye or Spain."],
 "about.p2":["Мақсаты — оқушылардың зияткерлік және шығармашылық әлеуетін дамыту, олардың ғылым мен білім саласында өзін-өзі жүзеге асыруына жағдай жасау.","The goal is to develop students’ intellectual and creative potential and help them realise themselves in science and education."],
-"about.badge":["ел Atlantia олимпиадаларын өткізеді","countries host Atlantia olympiads"],
+"vid.t":["Бейнені көру","Watch the video"],"vid.s":["1 минут · дыбыспен","1 minute · with sound"],
 "st.1":["пән","subjects"],"st.2":["ел","countries"],"st.3":["санат","categories"],"st.4":["тапсырма","problems"],"st.5":["минут","minutes"],
 "subj.eye":["Пәндер","Subjects"],"subj.h":["Өз <em>тереңдігіңді</em> таңда","Choose <em>your depth</em>"],
 "subj.p":["Бір немесе бірнеше пәнді тапсыруға болады — бірақ бір күнде екіден артық емес. Әр түрлі пәндер бойынша жүлделі орындар бірнеше марапатқа құқық береді.","Take one subject or several — but no more than two per day. Prize places in different subjects entitle you to several awards."],
@@ -113,6 +113,15 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
   let l=new URLSearchParams(location.search).get('lang');
   if(!l){try{l=localStorage.getItem('atl-lang')}catch(e){}}
   if(l&&l!=='ru')setLang(l);
+})();
+
+/* ================= promo video ================= */
+(function(){
+  const box=document.querySelector('.vid');if(!box)return;
+  const v=box.querySelector('video');
+  box.querySelector('.vid-play').addEventListener('click',()=>{box.classList.add('on');v.controls=true;v.play().catch(()=>{})});
+  // stop the sound when the video scrolls out of view
+  new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting&&!v.paused)v.pause()}),{threshold:.2}).observe(v);
 })();
 
 /* ================= nav ================= */

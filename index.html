@@ -521,6 +521,16 @@ summary{padding:17px 24px}
 .orgs{grid-template-columns:repeat(3,1fr)}
 @media (max-width:1080px){.orgs{grid-template-columns:1fr 1fr}}
 @media (max-width:680px){.orgs{grid-template-columns:1fr}}
+.vid{position:relative;width:min(100%,360px);aspect-ratio:9/16;align-self:center;border-radius:30px;overflow:hidden;background:#020B16;border:1px solid var(--stroke);box-shadow:0 30px 80px -40px rgba(0,200,255,.45)}
+.vid video{display:block;width:100%;height:100%;object-fit:cover}
+.vid-play{position:absolute;inset:0;display:flex;align-items:flex-end;gap:14px;padding:22px;border:0;cursor:pointer;text-align:left;color:var(--text);font:inherit;background:linear-gradient(180deg,rgba(2,11,22,0) 45%,rgba(2,11,22,.85))}
+.vid-play .pi{flex:none;width:58px;height:58px;border-radius:50%;background:var(--grad);color:#01121F;display:grid;place-items:center;box-shadow:0 0 0 0 rgba(0,200,255,.5);animation:vpulse 2.4s infinite;transition:scale .25s}
+.vid-play:hover .pi{scale:1.08}
+.vid-play .pi svg{width:24px;height:24px;margin-left:3px}
+.vid-play b{display:block;font-family:var(--display);font-weight:600;font-size:17px}
+.vid-play small{display:block;margin-top:3px;font-size:13px;color:rgba(233,246,252,.75)}
+.vid.on .vid-play{display:none}
+@keyframes vpulse{70%{box-shadow:0 0 0 16px rgba(0,200,255,0)}100%{box-shadow:0 0 0 0 rgba(0,200,255,0)}}
 </style>
 <script src="/assets/boot.js"></script>
 </head>
@@ -631,9 +641,9 @@ summary{padding:17px 24px}
       </div>
       <div class="about-r">
         <a class="doc-card" href="/polozhenie" data-r><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span><b data-i="doc.t">Положение об олимпиадах</b><small data-i="doc.s">Официальный документ · сезон 2026–2027</small></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        <div class="ph" data-clip>
-          <img data-par src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=1400&q=75" alt="" loading="lazy" decoding="async">
-          <div class="ph-badge"><strong class="grad">30+</strong><span data-i="about.badge">стран мира проводят олимпиады Atlantia</span></div>
+        <div class="vid" data-r>
+          <video id="promo" src="/assets/video/atlantia-promo.mp4" poster="/assets/video/atlantia-promo.webp" preload="none" playsinline width="720" height="1280"></video>
+          <button class="vid-play" type="button"><span class="pi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span><b data-i="vid.t">Смотреть видео</b><small data-i="vid.s">1 минута · со звуком</small></span></button>
         </div>
       </div>
     </div>
