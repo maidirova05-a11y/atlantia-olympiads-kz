@@ -1,10 +1,14 @@
-/* Consultation request → Bitrix24 lead.
+/* Consultation request → Bitrix24.
+   With BITRIX_DEAL_CATEGORY_ID set, it creates a contact and a deal in that
+   pipeline (воронка); without it, a lead.
    The Bitrix incoming webhook is a secret (it gives write access to the CRM),
    so it lives only in Vercel env vars, never in the page:
-     BITRIX_WEBHOOK_URL     https://<portal>.bitrix24.kz/rest/<user>/<code>/   (required)
-     BITRIX_SOURCE_ID       lead source, e.g. WEB                              (optional)
-     BITRIX_STATUS_ID       lead stage, e.g. NEW                               (optional)
-     BITRIX_ASSIGNED_BY_ID  responsible user id                                (optional) */
+     BITRIX_WEBHOOK_URL        https://<portal>.bitrix24.kz/rest/<user>/<code>/  (required)
+     BITRIX_DEAL_CATEGORY_ID   deal pipeline id, from …/crm/deal/kanban/category/<id>/ (optional)
+     BITRIX_DEAL_STAGE_ID      deal stage, e.g. C5:NEW; default is the pipeline's first stage (optional)
+     BITRIX_STATUS_ID          lead stage, e.g. NEW, when creating leads             (optional)
+     BITRIX_SOURCE_ID          source, e.g. WEB                                      (optional)
+     BITRIX_ASSIGNED_BY_ID     responsible user id                                   (optional) */
 const ALLOWED_ORIGIN=/^https:\/\/((www\.)?atlantia-olympiads\.kz|[a-z0-9-]+\.vercel\.app)$|^http:\/\/localhost(:\d+)?$/;
 const UTM=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
 
@@ -41,33 +45,44 @@ module.exports=async(req,res)=>{
 
   const lang=['ru','kk','en'].includes(b.lang)?b.lang:'ru';
   const page=clean(b.page,500);
-  const fields={
-    TITLE:'Atlantia: консультация — '+name,
-    NAME:name,
-    PHONE:[{VALUE:phone,VALUE_TYPE:'WORK'}],
+  const env=process.env;
+  const common={
     COMMENTS:[question&&'Вопрос: '+question,'Язык сайта: '+lang,page&&'Страница: '+page].filter(Boolean).join('\n'),
     SOURCE_DESCRIPTION:'Сайт atlantia-olympiads.kz — кнопка «Получить консультацию»'
   };
-  if(process.env.BITRIX_SOURCE_ID)fields.SOURCE_ID=process.env.BITRIX_SOURCE_ID;
-  if(process.env.BITRIX_STATUS_ID)fields.STATUS_ID=process.env.BITRIX_STATUS_ID;
-  if(process.env.BITRIX_ASSIGNED_BY_ID)fields.ASSIGNED_BY_ID=process.env.BITRIX_ASSIGNED_BY_ID;
-  for(const k of UTM){const v=clean(b[k],200);if(v)fields[k.toUpperCase()]=v}
+  if(env.BITRIX_SOURCE_ID)common.SOURCE_ID=env.BITRIX_SOURCE_ID;
+  if(env.BITRIX_ASSIGNED_BY_ID)common.ASSIGNED_BY_ID=env.BITRIX_ASSIGNED_BY_ID;
+  for(const k of UTM){const v=clean(b[k],200);if(v)common[k.toUpperCase()]=v}
+  const title='Atlantia: консультация — '+name;
+  const contact={NAME:name,PHONE:[{VALUE:phone,VALUE_TYPE:'WORK'}]};
 
-  try{
-    const r=await fetch(base+'crm.lead.add.json',{
+  const call=async(method,fields)=>{
+    const r=await fetch(base+method+'.json',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fields,params:{REGISTER_SONET_EVENT:'Y'}}),
       signal:AbortSignal.timeout(10000)
     });
     const data=await r.json().catch(()=>({}));
-    if(!r.ok||!data.result){
-      console.error('Bitrix error',r.status,data.error,data.error_description);
-      return res.status(502).json({ok:false,error:'crm'});
+    if(!r.ok||!data.result)throw new Error(`${method}: ${r.status} ${data.error||''} ${data.error_description||''}`);
+    return data.result;
+  };
+
+  try{
+    const cat=(env.BITRIX_DEAL_CATEGORY_ID||'').trim();
+    if(cat){
+      const contactId=await call('crm.contact.add',{...contact,SOURCE_ID:common.SOURCE_ID,ASSIGNED_BY_ID:common.ASSIGNED_BY_ID});
+      const deal={...common,TITLE:title,CATEGORY_ID:cat,CONTACT_ID:contactId};
+      if(env.BITRIX_DEAL_STAGE_ID)deal.STAGE_ID=env.BITRIX_DEAL_STAGE_ID;
+      await call('crm.deal.add',deal);
+    }else{
+      const lead={...common,...contact,TITLE:title};
+      if(env.BITRIX_STATUS_ID)lead.STATUS_ID=env.BITRIX_STATUS_ID;
+      await call('crm.lead.add',lead);
     }
     return res.status(200).json({ok:true});
   }catch(e){
-    console.error('Bitrix request failed',e);
+    console.error('Bitrix error',e.message);
     return res.status(502).json({ok:false,error:'crm'});
   }
 };
