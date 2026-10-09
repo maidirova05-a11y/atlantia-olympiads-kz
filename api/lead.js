@@ -1,15 +1,16 @@
 /* Consultation request → Bitrix24.
-   With BITRIX_DEAL_CATEGORY_ID set, it creates a contact and a deal in that
-   pipeline (воронка); without it, a lead.
+   Creates a contact and a deal in the ATLANTIA-FIMO pipeline (воронка, id 21);
+   BITRIX_DEAL_CATEGORY_ID overrides the pipeline, and "lead" there creates a lead instead.
    The Bitrix incoming webhook is a secret (it gives write access to the CRM),
    so it lives only in Vercel env vars, never in the page:
      BITRIX_WEBHOOK_URL        https://<portal>.bitrix24.kz/rest/<user>/<code>/  (required)
-     BITRIX_DEAL_CATEGORY_ID   deal pipeline id, from …/crm/deal/kanban/category/<id>/ (optional)
+     BITRIX_DEAL_CATEGORY_ID   deal pipeline id, from …/crm/deal/kanban/category/<id>/ (optional, default 21)
      BITRIX_DEAL_STAGE_ID      deal stage, e.g. C5:NEW; default is the pipeline's first stage (optional)
      BITRIX_STATUS_ID          lead stage, e.g. NEW, when creating leads             (optional)
      BITRIX_SOURCE_ID          source, e.g. WEB                                      (optional)
      BITRIX_ASSIGNED_BY_ID     responsible user id                                   (optional) */
 const ALLOWED_ORIGIN=/^https:\/\/((www\.)?atlantia-olympiads\.kz|[a-z0-9-]+\.vercel\.app)$|^http:\/\/localhost(:\d+)?$/;
+const DEAL_CATEGORY_ID='21'; // ATLANTIA-FIMO
 const UTM=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
 
 const clean=(v,max)=>String(v??'').replace(/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,max);
@@ -69,8 +70,8 @@ module.exports=async(req,res)=>{
   };
 
   try{
-    const cat=(env.BITRIX_DEAL_CATEGORY_ID||'').trim();
-    if(cat){
+    const cat=(env.BITRIX_DEAL_CATEGORY_ID||DEAL_CATEGORY_ID).trim();
+    if(cat!=='lead'){
       const contactId=await call('crm.contact.add',{...contact,SOURCE_ID:common.SOURCE_ID,ASSIGNED_BY_ID:common.ASSIGNED_BY_ID});
       const deal={...common,TITLE:title,CATEGORY_ID:cat,CONTACT_ID:contactId};
       if(env.BITRIX_DEAL_STAGE_ID)deal.STAGE_ID=env.BITRIX_DEAL_STAGE_ID;
