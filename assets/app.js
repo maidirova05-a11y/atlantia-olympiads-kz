@@ -316,7 +316,7 @@ const Bubbles=(function(){
 })();
 
 /* ================= WhatsApp consultation ================= */
-const WA_PHONE='77770888844';
+const WA_PHONE='77717001401';
 const WA_MSG={
   ru:'Здравствуйте! Хочу получить консультацию по олимпиаде Atlantia.',
   kk:'Сәлеметсіз бе! Atlantia олимпиадасы бойынша кеңес алғым келеді.',
