@@ -289,6 +289,18 @@ const Bubbles=(function(){
   ScrollTrigger.batch('[data-r]',{start:'top 88%',once:true,
     onEnter:b=>gsap.fromTo(b,{autoAlpha:0,y:46},{autoAlpha:1,y:0,duration:1,stagger:.09,ease:'power3.out',overwrite:true})});
   gsap.set('[data-r]',{autoAlpha:0});
+  // arriving from a subpage menu link like /#format: skip the intro and land on that section
+  const target=location.hash&&document.getElementById(location.hash.slice(1));
+  if(target){
+    skip();target.scrollIntoView();ScrollTrigger.refresh();
+    // a jump straight past a reveal's start doesn't fire its onEnter — show everything above the fold by hand
+    ScrollTrigger.getAll().forEach(st=>{
+      const el=st.trigger;
+      if(el&&el.hasAttribute&&el.hasAttribute('data-r')&&el.getBoundingClientRect().top<innerHeight*.88){
+        st.kill();gsap.fromTo(el,{autoAlpha:0,y:46},{autoAlpha:1,y:0,duration:1,ease:'power3.out',overwrite:true});
+      }
+    });
+  }
 
   document.querySelectorAll('[data-clip]').forEach(el=>{
     gsap.fromTo(el,{clipPath:'inset(18% 10% 18% 10% round 30px)'},{clipPath:'inset(0% 0% 0% 0% round 30px)',ease:'power2.out',scrollTrigger:{trigger:el,start:'top 90%',end:'top 35%',scrub:1}});
