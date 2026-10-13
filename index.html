@@ -808,6 +808,7 @@ summary{padding:17px 24px}
 }
 
 .about-r{display:flex;flex-direction:column;gap:22px}
+.doc-cards{display:flex;flex-direction:column;gap:12px}
 .doc-card{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:22px;background:var(--surface);border:1px solid var(--stroke);text-decoration:none;color:var(--text);transition:border-color .25s,translate .25s}
 .doc-card:hover{border-color:var(--cyan);translate:0 -3px}
 .doc-card .di{flex:none;width:52px;height:52px;border-radius:14px;background:var(--grad);color:#01121F;display:grid;place-items:center}
@@ -940,7 +941,10 @@ summary{padding:17px 24px}
         </ul>
       </div>
       <div class="about-r">
-        <a class="doc-card" href="/polozhenie" data-r><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span><b data-i="doc.t">Положение об олимпиадах</b><small data-i="doc.s">Официальный документ · сезон 2026–2027</small></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <div class="doc-cards">
+          <a class="doc-card" href="/polozhenie" data-r><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span><b data-i="doc.t">Положение об олимпиадах</b><small data-i="doc.s">Официальный документ · сезон 2026–2027</small></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <a class="doc-card" href="https://drive.google.com/drive/folders/1HeBTmT1YEz-f6-stcsBzlkuOF1CLq4Mk?usp=sharing" target="_blank" rel="noopener noreferrer" data-trial data-r><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1z"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M8.5 12.5l2 2 4-4M8 18h8"/></svg></span><span><b data-i="trial.t">Пробные задания</b><small data-i="trial.s">Материалы для подготовки · Google Диск</small></span><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
         <div class="vid" data-r>
           <video id="promo" src="/assets/video/atlantia-promo.mp4" poster="/assets/video/atlantia-promo.webp" preload="none" playsinline width="720" height="1280"></video>
           <button class="vid-play" type="button"><span class="pi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span><b data-i="vid.t">Смотреть видео</b><small data-i="vid.s">1 минута · со звуком</small></span></button>
