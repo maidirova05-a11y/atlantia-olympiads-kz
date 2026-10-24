@@ -11,7 +11,8 @@ const REG_URL='https://docs.google.com/forms/d/e/1FAIpQLSfF8_fUPFQGo9sUSuAPn2UjY
 /* ================= i18n ================= */
 // key: [kk, en]; Russian comes from the HTML itself
 const T={
-"title":["Atlantia STEM Olympiads 2026–2027 — Қазақстан оқушыларына арналған олимпиадалар", "Atlantia STEM Olympiads 2026–2027 — olympiads for school students in Kazakhstan"],
+"title":["Оқушыларға арналған халықаралық олимпиадалар 2026–2027 — Atlantia", "STEM olympiads for school students in Kazakhstan 2026–2027 — Atlantia"],
+"desc":["3–11 сынып оқушыларына арналған Atlantia олимпиадалары: математика, физика, информатика, химия, биология. Республикалық кезең 2026–2027, финал Түркия/Испанияда.", "Atlantia olympiads in maths, physics, informatics, chemistry and biology, grades 3–11. National round 2026–2027 in Kazakhstan, World Final in Turkey and Spain."],
 "nav.subj":["Пәндер","Subjects"],"nav.stages":["Кезеңдер","Stages"],"nav.format":["Формат","Format"],"nav.prizes":["Жүлделер","Prizes"],"nav.faq":["Сұрақтар","FAQ"],"nav.reg":["Тіркелу","Register"],
 "hero.tag":["3–11(12) сыныптарға арналған математика, физика, информатика, химия және биология бойынша халықаралық олимпиадалар","International olympiads in maths, physics, computer science, chemistry and biology for grades 3–11(12)"],
 "hero.cta":["Қатыс","Take part"],"o1.r":["Ұйымдастырушы","Organiser"],"o1.p":["Өкілдігі Барселонада (Испания) орналасқан халықаралық компания.","An international company with a representative office in Barcelona, Spain."],"nav.doc":["Ереже","Regulations"],"doc.t":["Олимпиадалар туралы ереже","Olympiad regulations"],"doc.s":["Ресми құжат · 2026–2027 маусымы","Official document · 2026–2027 season"],"trial.t":["Сынақ тапсырмалар","Practice tasks"],"trial.s":["Дайындыққа арналған материалдар · Google Диск","Preparation materials · Google Drive"],"pay.btn":["Kaspi арқылы төлеу","Pay via Kaspi"],"pay.link":["Kaspi-де төлеу","Pay in Kaspi"],"foot.offer":["Қоғамдық ұсыныс","Public offer"],"price.offer":["Қатысуды төлеу арқылы сіз <a href=\"/oferta\">қоғамдық ұсыныс</a> талаптарын қабылдайсыз.","By paying for participation you accept the terms of the <a href=\"/oferta\">public offer</a>."],"wa.label":["Кеңес алу","Get a consultation"],"wa.sub":["WhatsApp арқылы","on WhatsApp"],"hero.rep":["Қазақстандағы ресми өкіл","Official representative in Kazakhstan"],"hero.scroll":["Тереңге","Dive in"],"hero.skip":["Өткізіп жіберу","Skip"],
@@ -100,6 +101,7 @@ const T={
 const RU={};
 document.querySelectorAll('[data-i]').forEach(el=>{RU[el.dataset.i]??=el.innerHTML});
 RU.title=document.title;
+const META=document.querySelector('meta[name=description]');RU.desc=META?META.content:'';
 function setLang(l){
   if(!['ru','kk','en'].includes(l))l='ru';
   const idx=l==='kk'?0:1;
@@ -108,6 +110,7 @@ function setLang(l){
     el.innerHTML=l==='ru'?RU[k]:(T[k]?T[k][idx]:RU[k]);
   });
   document.title=l==='ru'?RU.title:T.title[idx];
+  if(META)META.content=l==='ru'?RU.desc:T.desc[idx];
   document.documentElement.lang=l;
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
   if(window.onLang)onLang(l);
