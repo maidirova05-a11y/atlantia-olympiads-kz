@@ -396,7 +396,7 @@ onLang(document.documentElement.lang||'ru');
     showErr('');send.disabled=true;
     try{
       const r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({name,phone,question:f.question.value.trim(),website:f.website.value,lang:document.documentElement.lang,page:location.href,...utm})});
+        body:JSON.stringify({name,phone,question:f.question.value.trim(),website:f.website.value,lang:document.documentElement.lang,page:location.href,referrer:document.referrer,...utm})});
       const d=await r.json().catch(()=>({}));
       if(!r.ok||!d.ok)throw new Error(d.error||r.status);
       form.reset();form.hidden=true;ok.hidden=false;
