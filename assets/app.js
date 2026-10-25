@@ -11,7 +11,8 @@ const REG_URL='https://docs.google.com/forms/d/e/1FAIpQLSfF8_fUPFQGo9sUSuAPn2UjY
 /* ================= i18n ================= */
 // key: [kk, en]; Russian comes from the HTML itself
 const T={
-"title":["Atlantia STEM Olympiads 2026–2027 — Қазақстан оқушыларына арналған олимпиадалар", "Atlantia STEM Olympiads 2026–2027 — olympiads for school students in Kazakhstan"],
+"title":["Оқушыларға арналған халықаралық олимпиадалар 2026–2027 — Atlantia", "STEM olympiads for school students in Kazakhstan 2026–2027 — Atlantia"],
+"desc":["3–11 сынып оқушыларына арналған Atlantia олимпиадалары: математика, физика, информатика, химия, биология. Республикалық кезең 2026–2027, финал Түркия/Испанияда.", "Atlantia olympiads in maths, physics, informatics, chemistry and biology, grades 3–11. National round 2026–2027 in Kazakhstan, World Final in Turkey and Spain."],
 "nav.subj":["Пәндер","Subjects"],"nav.stages":["Кезеңдер","Stages"],"nav.format":["Формат","Format"],"nav.prizes":["Жүлделер","Prizes"],"nav.faq":["Сұрақтар","FAQ"],"nav.reg":["Тіркелу","Register"],
 "hero.tag":["3–11(12) сыныптарға арналған математика, физика, информатика, химия және биология бойынша халықаралық олимпиадалар","International olympiads in maths, physics, computer science, chemistry and biology for grades 3–11(12)"],
 "hero.cta":["Қатыс","Take part"],"o1.r":["Ұйымдастырушы","Organiser"],"o1.p":["Өкілдігі Барселонада (Испания) орналасқан халықаралық компания.","An international company with a representative office in Barcelona, Spain."],"nav.doc":["Ереже","Regulations"],"doc.t":["Олимпиадалар туралы ереже","Olympiad regulations"],"doc.s":["Ресми құжат · 2026–2027 маусымы","Official document · 2026–2027 season"],"trial.t":["Сынақ тапсырмалар","Practice tasks"],"trial.s":["Дайындыққа арналған материалдар · Google Диск","Preparation materials · Google Drive"],"pay.btn":["Kaspi арқылы төлеу","Pay via Kaspi"],"pay.link":["Kaspi-де төлеу","Pay in Kaspi"],"foot.offer":["Қоғамдық ұсыныс","Public offer"],"price.offer":["Қатысуды төлеу арқылы сіз <a href=\"/oferta\">қоғамдық ұсыныс</a> талаптарын қабылдайсыз.","By paying for participation you accept the terms of the <a href=\"/oferta\">public offer</a>."],"wa.label":["Кеңес алу","Get a consultation"],"wa.sub":["WhatsApp арқылы","on WhatsApp"],"hero.rep":["Қазақстандағы ресми өкіл","Official representative in Kazakhstan"],"hero.scroll":["Тереңге","Dive in"],"hero.skip":["Өткізіп жіберу","Skip"],
@@ -91,6 +92,10 @@ const T={
 "q9":["Республикалық кезең қайда және қашан өтеді?", "Where and when is the national round held?"],"a9":["2026 жылғы қазаннан 2027 жылғы наурызға дейін Қазақстан қалаларында күндізгі форматта. Олимпиада мектеп базасында да — тек сол мектептің оқушылары үшін — өтуі мүмкін. Нақты мекенжай қатысушының e-mail-іне келеді.", "In person in cities across Kazakhstan from October 2026 to March 2027. A school may also host it for its own students only. The exact address is emailed to each participant."],
 "q10":["Әлемдік финалға қалай өтуге болады?", "How do I qualify for the World Final?"],"a10":["Республикалық кезеңде дұрыс жауаптардың 50%-дан астамын жинау керек. Финалистер елді өздері таңдайды: Түркия (2027 жылғы қаңтар) немесе Испания (2027 жылғы мамыр). Сапарды AZ GROUP LLC ұйымдастырады, шығындарды қатысушылар өздері төлейді.", "Score more than 50% correct answers in the national round. Finalists choose the country: Turkey (January 2027) or Spain (May 2027). AZ GROUP LLC organises the trip; participants cover the costs themselves."],
 "q11":["Қатысушылар мен жеңімпаздар не алады?", "What do participants and winners receive?"],"a11":["Барлық қатысушылар — электрондық сертификат, жеңімпаздар мен жүлдегерлер — I–III дәрежелі дипломдар мен жүлделер: планшет, велосипед, смарт білезік. Салтанатты марапаттау — 2027 жылғы сәуірде Астанада.", "Every participant gets an e-certificate; winners and prize-winners get 1st–3rd degree diplomas and prizes: a tablet, a bicycle, a smart band. The award ceremony is in Astana in April 2027."],
+"q12":["Қатысу қанша тұрады және бағаға не кіреді?", "How much does participation cost and what does the fee include?"],"a12":["Әр пән үшін 25 000 ₸, төлем <a href=\"https://kaspi.kz/pay/_gate?action=service_with_subservice&amp;service_id=3025&amp;subservice_id=22909&amp;region_id=19\" target=\"_blank\" rel=\"noopener noreferrer\" data-pay>Kaspi</a> арқылы AZ GROUP LLC шотына жасалады. Бағаға олимпиаданы өткізу, тапсырмаларды әзірлеу, марапаттау рәсімі және жүлде қоры кіреді. Олимпиада өткеннен кейін төлем қайтарылмайды.", "25,000 ₸ per subject, paid via <a href=\"https://kaspi.kz/pay/_gate?action=service_with_subservice&amp;service_id=3025&amp;subservice_id=22909&amp;region_id=19\" target=\"_blank\" rel=\"noopener noreferrer\" data-pay>Kaspi</a> to the AZ GROUP LLC account. The fee covers running the olympiad, problem development, the awards ceremony and the prize fund. Fees are non-refundable after the olympiad."],
+"q13":["Олимпиадаға қалай дайындалуға болады және сынақ тапсырмаларды қайдан алуға болады?", "How do I prepare for the olympiad and where can I find practice tasks?"],"a13":["Дайындыққа арналған сынақ тапсырмалар <a href=\"https://drive.google.com/drive/folders/1HeBTmT1YEz-f6-stcsBzlkuOF1CLq4Mk?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">Google Дискте</a> жарияланған — сол сілтеме «Олимпиадалар туралы» бөліміндегі «Сынақ тапсырмалар» карточкасында. Олимпиада форматы: 4–5 жауап нұсқасы бар 20 тапсырма, 60 минут; тапсырмалар ресми халықаралық олимпиадалардың бағдарламаларына сәйкес келеді.", "Practice tasks are published on <a href=\"https://drive.google.com/drive/folders/1HeBTmT1YEz-f6-stcsBzlkuOF1CLq4Mk?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">Google Drive</a> — the same link is in the “Practice tasks” card in the “About” section. Format: 20 multiple-choice questions with 4–5 options, 60 minutes; the problems follow the syllabi of the official international olympiads."],
+"q14":["Нәтижелер қашан жарияланады және сертификат немесе дипломды қалай алуға болады?", "When are the results published and how do I get my certificate or diploma?"],"a14":["Ұпайлар олимпиададан кейін 15 жұмыс күні ішінде atlantia-olympiads.kz сайтында жарияланады, жалпы нәтижелер — 2027 жылғы сәуірде. Барлық қатысушылар электрондық сертификат алады, жеңімпаздар мен жүлдегерлер — I–III дәрежелі дипломдар мен жүлделер. Салтанатты марапаттау — 2027 жылғы сәуірде Астанада; жүлделерді бір ай ішінде алу керек.", "Scores are published on atlantia-olympiads.kz within 15 working days of the olympiad, and the overall results in April 2027. Every participant receives an e-certificate; winners and prize-winners receive 1st–3rd degree diplomas and prizes. The award ceremony is in Astana in April 2027; prizes must be collected within a month."],
+"q15":["Онлайн қатысуға бола ма?", "Can I take part online?"],"a15":["Жоқ, республикалық кезең тек күндізгі форматта өтеді — Қазақстан қалаларында немесе мектеп базасында сол мектептің оқушылары үшін, бір күнде екі ағымда. Онлайн тек тіркелу мен төлем: <a href=\"#register\">сайттағы форма</a> және <a href=\"https://kaspi.kz/pay/_gate?action=service_with_subservice&amp;service_id=3025&amp;subservice_id=22909&amp;region_id=19\" target=\"_blank\" rel=\"noopener noreferrer\" data-pay>Kaspi</a>.", "No, the national round is held in person only — in cities across Kazakhstan or at a school for its own students, in two sessions on the same day. Only registration and payment are online: <a href=\"#register\">the form on this site</a> and <a href=\"https://kaspi.kz/pay/_gate?action=service_with_subservice&amp;service_id=3025&amp;subservice_id=22909&amp;region_id=19\" target=\"_blank\" rel=\"noopener noreferrer\" data-pay>Kaspi</a>."],
 "fin.h":["Ғылымға <em>тереңірек</em> сүңгі","Dive <em>deeper</em> into science"],
 "fin.p":["Пәнді таңдап, республикалық кезеңге тіркел және әлемдік финалға жолыңды баста.","Choose a subject, register for the national round and start your journey to the World Final."],
 "foot.rep":["Қазақстан Республикасындағы ресми өкіл — AZ GROUP LLC, Астана қ.","Official representative in the Republic of Kazakhstan — AZ GROUP LLC, Astana"],
@@ -100,6 +105,7 @@ const T={
 const RU={};
 document.querySelectorAll('[data-i]').forEach(el=>{RU[el.dataset.i]??=el.innerHTML});
 RU.title=document.title;
+const META=document.querySelector('meta[name=description]');RU.desc=META?META.content:'';
 function setLang(l){
   if(!['ru','kk','en'].includes(l))l='ru';
   const idx=l==='kk'?0:1;
@@ -108,6 +114,7 @@ function setLang(l){
     el.innerHTML=l==='ru'?RU[k]:(T[k]?T[k][idx]:RU[k]);
   });
   document.title=l==='ru'?RU.title:T.title[idx];
+  if(META)META.content=l==='ru'?RU.desc:T.desc[idx];
   document.documentElement.lang=l;
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
   if(window.onLang)onLang(l);
@@ -318,6 +325,7 @@ const Bubbles=(function(){
 
   document.querySelectorAll('[data-count]').forEach(el=>{
     const n=+el.dataset.count,o={v:0};
+    el.textContent='0'; // the HTML holds the real number for no-JS visitors and crawlers
     ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>gsap.to(o,{v:n,duration:1.6,ease:'power2.out',onUpdate:()=>el.textContent=Math.round(o.v)})});
   });
 
@@ -389,7 +397,7 @@ onLang(document.documentElement.lang||'ru');
     showErr('');send.disabled=true;
     try{
       const r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({name,phone,question:f.question.value.trim(),website:f.website.value,lang:document.documentElement.lang,page:location.href,...utm})});
+        body:JSON.stringify({name,phone,question:f.question.value.trim(),website:f.website.value,lang:document.documentElement.lang,page:location.href,referrer:document.referrer,...utm})});
       const d=await r.json().catch(()=>({}));
       if(!r.ok||!d.ok)throw new Error(d.error||r.status);
       form.reset();form.hidden=true;ok.hidden=false;
