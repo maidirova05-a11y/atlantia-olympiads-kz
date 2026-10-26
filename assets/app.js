@@ -132,6 +132,9 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
 (function(){
   const box=document.querySelector('.vid');if(!box)return;
   const v=box.querySelector('video');
+  // the poster is attached only when the video approaches the viewport (it is far below the fold)
+  const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){v.poster=v.dataset.poster;io.disconnect()}},{rootMargin:'800px 0px'});
+  io.observe(v);
   box.querySelector('.vid-play').addEventListener('click',()=>{box.classList.add('on');v.controls=true;v.play().catch(()=>{})});
   // stop the sound when the video scrolls out of view
   new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting&&!v.paused)v.pause()}),{threshold:.2}).observe(v);
@@ -182,7 +185,10 @@ const Bubbles=(function(){
   const mk=(y)=>({x:Math.random()*w,y:y??Math.random()*h,r:Math.random()*3.2+.6,s:Math.random()*.6+.25,p:Math.random()*6.28});
   for(let i=0;i<N;i++)B.push(mk());
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return{burst(){}};
-  (function f(){
+  let vis=true,running=true;
+  new IntersectionObserver(es=>{vis=es[es.length-1].isIntersecting;if(vis&&!running){running=true;requestAnimationFrame(f)}}).observe(c);
+  function f(){
+    if(!vis){running=false;return}
     x.clearRect(0,0,w,h);
     const k=1+boost*5;boost*=.985;
     for(const b of B){
@@ -193,7 +199,8 @@ const Bubbles=(function(){
       x.lineWidth=.6;x.strokeStyle=`rgba(190,245,255,${.18+b.r*.04})`;x.stroke();
     }
     requestAnimationFrame(f);
-  })();
+  }
+  f();
   return{burst(){boost=1;for(let i=0;i<40;i++)B.push(mk(h+Math.random()*120));setTimeout(()=>B.splice(N),9000)}};
 })();
 
@@ -243,6 +250,7 @@ const Bubbles=(function(){
   root.classList.remove('intro');
 
   const done=()=>{
+    try{sessionStorage.setItem('atl-intro','1')}catch(e){}
     root.classList.remove('lock');document.getElementById('skip').style.display='none';ScrollTrigger.refresh();
     em.classList.add('alive');
     if(!reduce)gsap.delayedCall(6,function loop(){shine();gsap.delayedCall(7,loop)});
@@ -288,6 +296,10 @@ const Bubbles=(function(){
   const skip=()=>{if(tl.progress()<1)tl.progress(1)};
   document.getElementById('skip').addEventListener('click',skip);
   addEventListener('keydown',e=>{if(e.key==='Escape')skip()});
+  // returning visitor (intro already seen in this tab session, e.g. back from /polozhenie): skip it so the
+  // hero paints right away; a reload still replays it
+  let seen=false;try{seen=sessionStorage.getItem('atl-intro')==='1'&&(performance.getEntriesByType('navigation')[0]||{}).type!=='reload'}catch(e){}
+  if(seen)skip();
 
   // hero exit: sink down into the deep
   gsap.to('.lockup',{yPercent:-16,autoAlpha:0,scale:.94,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 30%',scrub:true}});
