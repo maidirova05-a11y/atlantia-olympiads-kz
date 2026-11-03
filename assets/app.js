@@ -360,9 +360,9 @@ onLang(document.documentElement.lang||'ru');
   if(!dlg||!form||typeof dlg.showModal!=='function')return;
   const ok=document.getElementById('leadOk'),err=document.getElementById('leadErr'),send=form.querySelector('[type=submit]');
   const MSG={
-    ru:{name:'Укажите имя',phone:'Укажите номер телефона полностью',fail:'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в WhatsApp.'},
-    kk:{name:'Атыңызды жазыңыз',phone:'Телефон нөмірін толық жазыңыз',fail:'Өтінім жіберілмеді. Қайталап көріңіз немесе WhatsApp-қа жазыңыз.'},
-    en:{name:'Please enter your name',phone:'Please enter your full phone number',fail:'Could not send the request. Please try again or message us on WhatsApp.'}
+    ru:{name:'Укажите имя',phone:'Укажите номер телефона полностью',fail:'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в WhatsApp.',rate:'Слишком много попыток. Заявка с этим номером уже отправлена или лимит исчерпан — подождите несколько минут или напишите нам в WhatsApp.'},
+    kk:{name:'Атыңызды жазыңыз',phone:'Телефон нөмірін толық жазыңыз',fail:'Өтінім жіберілмеді. Қайталап көріңіз немесе WhatsApp-қа жазыңыз.',rate:'Әрекет тым көп. Бұл нөмірден өтінім жіберілді немесе лимит таусылды — бірнеше минут күтіңіз немесе WhatsApp-қа жазыңыз.'},
+    en:{name:'Please enter your name',phone:'Please enter your full phone number',fail:'Could not send the request. Please try again or message us on WhatsApp.',rate:'Too many attempts. A request for this number was just sent or the limit is reached — please wait a few minutes or message us on WhatsApp.'}
   };
   const m=()=>MSG[document.documentElement.lang]||MSG.ru;
   // UTM tags of the visit, so the lead in Bitrix shows where the visitor came from
@@ -397,10 +397,10 @@ onLang(document.documentElement.lang||'ru');
       const r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({name,phone,question:f.question.value.trim(),website:f.website.value,lang:document.documentElement.lang,page:location.href,referrer:document.referrer,...utm})});
       const d=await r.json().catch(()=>({}));
-      if(!r.ok||!d.ok)throw new Error(d.error||r.status);
+      if(!r.ok||!d.ok){const x=new Error(d.error||r.status);x.status=r.status;x.field=d.field;throw x}
       form.reset();form.hidden=true;ok.hidden=false;
       if(window.ymGoal)ymGoal('lead_sent');
-    }catch(x){showErr(m().fail)}
+    }catch(x){showErr(x.status===429?m().rate:x.field&&m()[x.field]?m()[x.field]:m().fail);if(x.field&&form.elements[x.field])form.elements[x.field].focus()}
     finally{send.disabled=false}
   });
 })();
