@@ -99,7 +99,7 @@ const T={
 "fin.h":["Ғылымға <em>тереңірек</em> сүңгі","Dive <em>deeper</em> into science"],
 "fin.p":["Пәнді таңдап, республикалық кезеңге тіркел және әлемдік финалға жолыңды баста.","Choose a subject, register for the national round and start your journey to the World Final."],
 "foot.rep":["Қазақстан Республикасындағы ресми өкіл — AZ GROUP LLC, Астана қ.","Official representative in the Republic of Kazakhstan — AZ GROUP LLC, Astana"],
-"lead.btn":["Кеңес алу","Get a consultation"],"lead.sub":["өтінім қалдыру","leave a request"],"lead.eye":["Кеңес","Consultation"],"lead.h":["<em>Кеңес</em> алу","Get a <em>consultation</em>"],"lead.p":["Байланыс деректеріңізді қалдырыңыз — менеджер қайта қоңырау шалып, олимпиада туралы барлық сұрақтарға жауап береді.","Leave your contacts — a manager will call you back and answer all your questions about the olympiad."],"lead.name":["Атыңыз","Your name"],"lead.phone":["Телефон","Phone"],"lead.q":["Сұрақ (міндетті емес)","Question (optional)"],"lead.send":["Өтінім жіберу","Send request"],"lead.note":["Батырманы басу арқылы сіз дербес деректерді өңдеуге келісесіз.","By pressing the button you agree to the processing of your personal data."],"lead.wa":["немесе WhatsApp-қа жазыңыз","or message us on WhatsApp"],"lead.ok.h":["Өтінім <em>жіберілді</em>","Request <em>sent</em>"],"lead.ok.p":["Рахмет! Менеджер жақын арадағы жұмыс уақытында сізбен байланысады.","Thank you! A manager will contact you during working hours shortly."],"lead.ok.btn":["Жабу","Close"],
+"lead.btn":["Кеңес алу","Get a consultation"],"lead.sub":["өтінім қалдыру","leave a request"],"lead.eye":["Кеңес","Consultation"],"lead.h":["<em>Кеңес</em> алу","Get a <em>consultation</em>"],"lead.p":["Байланыс деректеріңізді қалдырыңыз — менеджер қайта қоңырау шалып, олимпиада туралы барлық сұрақтарға жауап береді.","Leave your contacts — a manager will call you back and answer all your questions about the olympiad."],"lead.name":["Атыңыз","Your name"],"lead.phone":["Телефон","Phone"],"lead.q":["Сұрақ (міндетті емес)","Question (optional)"],"lead.send":["Өтінім жіберу","Send request"],"lead.note":["Батырманы басу арқылы сіз дербес деректерді өңдеуге келісесіз.","By pressing the button you agree to the processing of your personal data."],"lead.wa":["немесе WhatsApp-қа жазыңыз","or message us on WhatsApp"],"lead.ok.h":["Өтінім <em>жіберілді</em>","Request <em>sent</em>"],"lead.ok.p":["Рахмет. Менеджер жақын арадағы жұмыс уақытында сізбен байланысады.","Thank you. A manager will contact you during working hours shortly."],"lead.ok.btn":["Жабу","Close"],
 "foot.photo":["Фото: Unsplash","Photos: Unsplash"]
 };
 const RU={};
@@ -224,12 +224,8 @@ const Bubbles=(function(){
   const sub=document.querySelector('.word-sub');
   const rest=['.hero-tag','#ctaMain','.hero-rep'].map(s=>document.querySelector(s));
 
-  // light sweep across the wordmark: each letter shows its own slice of one word-wide highlight
-  const shine=()=>{const n=letters.length,o={k:-.8};return gsap.to(o,{k:.8,duration:1.5,ease:'power2.inOut',
-    onUpdate:()=>letters.forEach((l,i)=>l.style.backgroundPosition=`${(i/(n-1)+o.k)*100}% 0, 0 0`)})};
-
   gsap.set(rest,{autoAlpha:0,y:24});
-  gsap.set(sub,{autoAlpha:0,letterSpacing:reduce?'.5em':'1.3em'});
+  gsap.set(sub,{autoAlpha:0,letterSpacing:reduce?'.2em':'.4em'});
   gsap.set([hdr,'.scroll-cue'],{autoAlpha:0});
   gsap.set(strokes,{autoAlpha:0,scale:.6,filter:'blur(12px)',transformOrigin:'50% 50%'});
   gsap.set(glow,{autoAlpha:0});
@@ -252,8 +248,6 @@ const Bubbles=(function(){
   const done=()=>{
     try{sessionStorage.setItem('atl-intro','1')}catch(e){}
     root.classList.remove('lock');document.getElementById('skip').style.display='none';ScrollTrigger.refresh();
-    em.classList.add('alive');
-    if(!reduce)gsap.delayedCall(6,function loop(){shine();gsap.delayedCall(7,loop)});
   };
   const tl=gsap.timeline({paused:true,onComplete:done});
   if(reduce){
@@ -281,13 +275,11 @@ const Bubbles=(function(){
       .to(em,{scale:1.08,duration:.18,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'50% 50%'},3.05)
       .to(water,{scaleX:1,autoAlpha:1,duration:.7,ease:'expo.out'},3.1)
       .add(()=>Bubbles.burst(),3.3)
-      .to(letters,{yPercent:0,scaleY:1,autoAlpha:1,filter:'blur(0px)',duration:1.2,stagger:{each:.07,from:'center'},ease:'back.out(1.6)'},3.3)
+      .to(letters,{yPercent:0,scaleY:1,autoAlpha:1,filter:'blur(0px)',duration:1.2,stagger:{each:.07,from:'center'},ease:'power3.out'},3.3)
       .to(water,{autoAlpha:0,scaleX:1.25,duration:1.2,ease:'power2.in'},4.1)
-      .add(shine(),4.2)
-      .to(sub,{autoAlpha:1,letterSpacing:'.5em',duration:1.2,ease:'expo.out'},3.9)
+      .to(sub,{autoAlpha:1,letterSpacing:'.2em',duration:1.2,ease:'expo.out'},3.9)
       .to(rest,{autoAlpha:1,y:0,duration:.8,stagger:.12,ease:'power3.out'},4.3)
-      .fromTo('#ctaMain',{scale:.8},{scale:1,duration:.9,ease:'elastic.out(1,.55)'},4.5)
-      .to([hdr,'.scroll-cue'],{autoAlpha:1,duration:.6},4.7);
+            .to([hdr,'.scroll-cue'],{autoAlpha:1,duration:.6},4.7);
   }
   // start once the webfont is in, so the letters animate in their real shape (max wait 1.5s)
   Promise.race([document.fonts?document.fonts.ready:Promise.resolve(),new Promise(r=>setTimeout(r,1500))]).then(()=>tl.play());
@@ -343,13 +335,7 @@ const Bubbles=(function(){
 
   gsap.from('.pod',{y:90,autoAlpha:0,stagger:.12,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.podium',start:'top 85%'}});
   gsap.from('.table-wrap .bar i',{scaleX:0,duration:1.2,stagger:.03,ease:'power3.out',scrollTrigger:{trigger:'.table-wrap',start:'top 80%'}});
-  gsap.from('.lvl .bar i.f',{scaleY:0,transformOrigin:'bottom',duration:.6,stagger:.04,ease:'back.out(2)',scrollTrigger:{trigger:'.depth',start:'top 75%'}});
-
-  document.querySelectorAll('.cta-main').forEach(b=>{
-    if(matchMedia('(hover: none)').matches)return;
-    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.25,y:(e.clientY-r.top-r.height/2)*.35,duration:.4})});
-    b.addEventListener('mouseleave',()=>gsap.to(b,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}));
-  });
+  gsap.from('.lvl .bar i.f',{scaleY:0,transformOrigin:'bottom',duration:.6,stagger:.04,ease:'power3.out',scrollTrigger:{trigger:'.depth',start:'top 75%'}});
 })();
 
 /* ================= WhatsApp consultation ================= */
@@ -374,9 +360,9 @@ onLang(document.documentElement.lang||'ru');
   if(!dlg||!form||typeof dlg.showModal!=='function')return;
   const ok=document.getElementById('leadOk'),err=document.getElementById('leadErr'),send=form.querySelector('[type=submit]');
   const MSG={
-    ru:{name:'Укажите имя',phone:'Укажите номер телефона полностью',fail:'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в WhatsApp.'},
-    kk:{name:'Атыңызды жазыңыз',phone:'Телефон нөмірін толық жазыңыз',fail:'Өтінім жіберілмеді. Қайталап көріңіз немесе WhatsApp-қа жазыңыз.'},
-    en:{name:'Please enter your name',phone:'Please enter your full phone number',fail:'Could not send the request. Please try again or message us on WhatsApp.'}
+    ru:{name:'Укажите имя',phone:'Укажите номер телефона полностью',fail:'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам в WhatsApp.',rate:'Слишком много попыток. Заявка с этим номером уже отправлена или лимит исчерпан — подождите несколько минут или напишите нам в WhatsApp.'},
+    kk:{name:'Атыңызды жазыңыз',phone:'Телефон нөмірін толық жазыңыз',fail:'Өтінім жіберілмеді. Қайталап көріңіз немесе WhatsApp-қа жазыңыз.',rate:'Әрекет тым көп. Бұл нөмірден өтінім жіберілді немесе лимит таусылды — бірнеше минут күтіңіз немесе WhatsApp-қа жазыңыз.'},
+    en:{name:'Please enter your name',phone:'Please enter your full phone number',fail:'Could not send the request. Please try again or message us on WhatsApp.',rate:'Too many attempts. A request for this number was just sent or the limit is reached — please wait a few minutes or message us on WhatsApp.'}
   };
   const m=()=>MSG[document.documentElement.lang]||MSG.ru;
   // UTM tags of the visit, so the lead in Bitrix shows where the visitor came from
@@ -411,10 +397,10 @@ onLang(document.documentElement.lang||'ru');
       const r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({name,phone,question:f.question.value.trim(),website:f.website.value,lang:document.documentElement.lang,page:location.href,referrer:document.referrer,...utm})});
       const d=await r.json().catch(()=>({}));
-      if(!r.ok||!d.ok)throw new Error(d.error||r.status);
+      if(!r.ok||!d.ok){const x=new Error(d.error||r.status);x.status=r.status;x.field=d.field;throw x}
       form.reset();form.hidden=true;ok.hidden=false;
       if(window.ymGoal)ymGoal('lead_sent');
-    }catch(x){showErr(m().fail)}
+    }catch(x){showErr(x.status===429?m().rate:x.field&&m()[x.field]?m()[x.field]:m().fail);if(x.field&&form.elements[x.field])form.elements[x.field].focus()}
     finally{send.disabled=false}
   });
 })();
