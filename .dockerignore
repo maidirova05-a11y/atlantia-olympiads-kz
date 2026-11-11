@@ -1,0 +1,11 @@
+.git
+.claude
+.vercel
+node_modules
+docker.env
+.env
+compose.yaml
+*.md
+*.csv
+*.docx
+*.doc

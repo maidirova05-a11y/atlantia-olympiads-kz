@@ -1,0 +1,17 @@
+# Сайт Atlantia на своём сервере: статика + api/lead.js (заявки в Bitrix24).
+#
+#   cp docker.env.example docker.env   # и заполнить
+#   docker compose up -d --build
+#
+# Слушает только 127.0.0.1:3108 — наружу отдаёт nginx с HTTPS. База не нужна.
+
+name: atlantia
+
+services:
+  app:
+    build: .
+    image: atlantia-app
+    restart: unless-stopped
+    env_file: docker.env
+    ports:
+      - "127.0.0.1:${APP_PORT:-3108}:3000"
