@@ -9,3 +9,6 @@ Thumbs.db
 docker.env
 .env
 node_modules
+
+# local results store, mailed passwords (real participants)
+.data
