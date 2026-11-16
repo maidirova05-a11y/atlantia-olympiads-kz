@@ -10,3 +10,7 @@ scripts
 docker.env
 .env
 compose.yaml
+docker.env.*
+!docker.env.example
+*.bak*
+*.sh
