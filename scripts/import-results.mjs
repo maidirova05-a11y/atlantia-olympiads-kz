@@ -5,6 +5,7 @@
 //   … --dry                                    only print the summary, write nothing
 //   … --add "ФИО|email|балл|предмет[|класс|школа|город]"   extra participant (repeatable), e.g. a test entry
 //   … --fix "почта-из-таблицы=правильная-почта"      correct a mistyped address without editing the sheet (repeatable)
+//   … --rename "ФИО из таблицы=ФИО на сертификате"   correct a name (repeatable); the new one is printed on the certificate as is
 //
 // On the server run it inside the app container: docker compose exec app node scripts/import-results.mjs <file>.
 // The sheet that has a «БАЛЛ»/«Результат» column is read (on the «24.10 Результаты» file it is «РЕГИСТРАЦИЯ»);
@@ -25,9 +26,11 @@ const args = process.argv.slice(2);
 const dry = args.includes('--dry');
 const adds = [];
 const fixes = new Map();
+const renames = new Map();
 let file = '';
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--add') adds.push(args[++i] || '');
+  else if (args[i] === '--rename') { const [from, to] = String(args[++i] || '').split('='); if (!from || !to) { console.error('bad --rename, expected "старое=новое"'); process.exit(1); } renames.set(from.replace(/\s+/g, ' ').trim().toLowerCase(), to.replace(/\s+/g, ' ').trim()); }
   else if (args[i] === '--fix') { const [from, to] = String(args[++i] || '').split('='); if (!from || !to) { console.error('bad --fix, expected "старая=новая"'); process.exit(1); } fixes.set(normEmail(from), normEmail(to)); }
   else if (args[i] !== '--dry') file = args[i];
 }
@@ -70,7 +73,8 @@ const put = (email, p) => {
 };
 
 for (const r of rows) {
-  const name = nameCase(clean(r[C.name]));
+  const sheetName = nameCase(clean(r[C.name]));
+  const name = renames.get(sheetName.toLowerCase()) || sheetName;
   if (!name || (!r[C.code] && !r[C.score])) continue; // group headers like «Аудит 1 каз», empty rows
   const score = clean(r[C.score]);
   const email = fixes.get(normEmail(r[C.email])) || normEmail(r[C.email]);
