@@ -314,3 +314,14 @@ test('me: the certificate subject and the world-final flag (score strictly above
     ['A', 'physics', false], ['B', 'chemistry', true], ['C', 'informatics', true], ['D', 'biology', false], ['E', '', true], ['F', '', true],
   ]);
 });
+
+test('linked addresses (import --also): one code, letter goes to both mailboxes', async () => {
+  const p = await db.get(results.key.people('parent@mail.ru'));
+  await db.set(results.key.people('second@mail.ru'), p);
+  await db.set(results.key.cc('parent@mail.ru'), JSON.stringify(['second@mail.ru']));
+  await db.set(results.key.cc('second@mail.ru'), JSON.stringify(['parent@mail.ru']));
+  assert.equal((await call('request', { email: 'second@mail.ru' })).status, 200);
+  assert.deepEqual(mails.map((m) => m.to).sort(), ['parent@mail.ru', 'second@mail.ru']);
+  assert.equal(mails[0].letter.text, mails[1].letter.text);
+  assert.equal((await call('login', { email: 'second@mail.ru', password: lastPassword() })).status, 200);
+});

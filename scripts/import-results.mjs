@@ -5,6 +5,7 @@
 //   … --dry                                    only print the summary, write nothing
 //   … --add "ФИО|email|балл|предмет[|класс|школа|город]"   extra participant (repeatable), e.g. a test entry
 //   … --fix "почта-из-таблицы=правильная-почта"      correct a mistyped address without editing the sheet (repeatable)
+//   … --also "почта-из-таблицы=ещё-одна-почта"      the same participants are also reachable by a second address (e.g. «Почта 2»); the first keeps working, and a code requested for either address is mailed to both (repeatable)
 //   … --rename "ФИО из таблицы=ФИО на сертификате"   correct a name (repeatable); the new one is printed on the certificate as is
 //
 // On the server run it inside the app container: docker compose exec app node scripts/import-results.mjs <file>.
@@ -27,10 +28,13 @@ const dry = args.includes('--dry');
 const adds = [];
 const fixes = new Map();
 const renames = new Map();
+const alsos = [];
+const ccMap = new Map(); // address → other addresses that get the same code letter
 let file = '';
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--add') adds.push(args[++i] || '');
   else if (args[i] === '--rename') { const [from, to] = String(args[++i] || '').split('='); if (!from || !to) { console.error('bad --rename, expected "старое=новое"'); process.exit(1); } renames.set(from.replace(/\s+/g, ' ').trim().toLowerCase(), to.replace(/\s+/g, ' ').trim()); }
+  else if (args[i] === '--also') { const [from, to] = String(args[++i] || '').split('='); if (!from || !to || !isEmail(normEmail(to))) { console.error('bad --also, expected "почта-из-таблицы=другая-почта"'); process.exit(1); } alsos.push([normEmail(from), normEmail(to)]); }
   else if (args[i] === '--fix') { const [from, to] = String(args[++i] || '').split('='); if (!from || !to) { console.error('bad --fix, expected "старая=новая"'); process.exit(1); } fixes.set(normEmail(from), normEmail(to)); }
   else if (args[i] !== '--dry') file = args[i];
 }
@@ -93,6 +97,14 @@ for (const r of rows) {
   });
 }
 
+// --also: the participants of one address are listed under a second one too (the sheet's «Почта 2» is not imported by itself:
+// it often holds a teacher's address shared by several children).
+for (const [from, to] of alsos) {
+  if (!byEmail.has(from)) { console.error(`--also: в таблице нет почты ${from}`); process.exit(1); }
+  for (const p of byEmail.get(from)) put(to, { ...p });
+  for (const [a, b] of [[from, to], [to, from]]) ccMap.set(a, [...new Set([...(ccMap.get(a) || []), b])]);
+}
+
 for (const a of adds) {
   const [name, mail, score, subj, grade = '', school = '', city = ''] = a.split('|').map(clean);
   const email = normEmail(mail);
@@ -114,9 +126,11 @@ if (!db) { console.error('no store: set DATABASE_URL (Postgres) or UPSTASH_REDIS
 const old = JSON.parse((await db.get('res:index')) || '[]');
 // Index first (old ∪ new): an interrupted import never leaves keys the next run does not know about.
 await db.set('res:index', JSON.stringify([...new Set([...old, ...byEmail.keys()])]));
+await db.del(...[...new Set([...old, ...byEmail.keys()])].map(key.cc)); // links come only from this run's --also
 for (const [email, list] of byEmail) await db.set(key.people(email), JSON.stringify(list));
+for (const [email, to] of ccMap) await db.set(key.cc(email), JSON.stringify(to));
 const gone = old.filter((e) => !byEmail.has(e));
 // Addresses no longer in the sheet lose their results, account (so sessions) and pending code.
-if (gone.length) await db.del(...gone.flatMap((e) => [key.people(e), key.acct(e), key.otp(e), key.otpTry(e)]));
+if (gone.length) await db.del(...gone.flatMap((e) => [key.cc(e), key.people(e), key.acct(e), key.otp(e), key.otpTry(e)]));
 await db.set('res:index', JSON.stringify([...byEmail.keys()]));
 console.log(`записано в ${{ redis: 'Upstash Redis', postgres: 'Postgres (таблица kv)', file: '.data/dev-store.json' }[db.kind] || db.kind}; удалено старых адресов: ${gone.length}`);

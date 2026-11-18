@@ -12,6 +12,7 @@
                        apps group identical letters and parents often type the code from an earlier one.
                        It replaces the account password only when somebody signs in with it, so a
                        stranger who requests a code cannot reset or sign out the parent.
+     res:cc:<email>    JSON array of other addresses that get the same letter (set by the import's --also)
      res:otptry:<e>    sign-in attempts against the current code
      res:mail:<email>  password e-mails taken in the current day (counter, taken before sending)
      res:mailgap:<e>   set (atomically) for 60 s with each e-mail
@@ -47,6 +48,7 @@ const key = {
   fail: (e) => 'res:fail:' + e,
   otp: (e) => 'res:otp:' + e,
   otpTry: (e) => 'res:otptry:' + e,
+  cc: (e) => 'res:cc:' + e,
 };
 
 function config(env = process.env) {
@@ -130,6 +132,13 @@ async function requestPassword(req, res, ctx, b, cfg) {
     await db.del(key.mailGap(email)); // let the parent retry at once; the daily counter stays
     log.error('results: mail failed', { id: ctx.id, reason: String(e?.message || e).slice(0, 200) });
     return fail(res, 502, 'mail', ctx.meta);
+  }
+  // Linked addresses (import --also) get the very same letter, so the code reaches both mailboxes.
+  // The login in the letter is the address the code was requested for. Their failures do not block the parent.
+  for (const to of readJson(await db.get(key.cc(email))) || []) {
+    try { await mailer.send(cfg.mail, to, mailer.passwordLetter(email, code, lang)); } catch (e) {
+      log.error('results: cc mail failed', { id: ctx.id, reason: String(e?.message || e).slice(0, 200) });
+    }
   }
   // Stored only after the letter left, so the code in the latest letter is the one that works.
   // The account password is not touched: it keeps working until somebody signs in with the code.
