@@ -56,6 +56,8 @@ stores a copy of every lead **before** the CRM call, so a lead survives a CRM ou
 `BITRIX_WEBHOOK_URL` (required, secret, `https://<portal>.bitrix24.kz/rest/<user>/<code>/`);
 optional `BITRIX_DEAL_CATEGORY_ID` (digits or `lead`), `BITRIX_DEAL_STAGE_ID`, `BITRIX_STATUS_ID`,
 `BITRIX_SOURCE_ID`, `BITRIX_ASSIGNED_BY_ID` (digits). An invalid value returns 500 `config` and logs the variable name.
+Results code email (optional, off without both): `RESEND_API_KEY` (secret), `MAIL_FROM` (verified sender),
+`RESULTS_EMAIL_TO` (default `akbota.kasen@mail.ru`). After each lead a code is emailed to that address.
 Docker only: `DATABASE_URL` is set by `compose.yaml` (do not put it in `docker.env`).
 
 ## Tests

@@ -11,6 +11,7 @@ const { parseLead } = require('./_lib/validate');
 const limiter = require('./_lib/ratelimit');
 const { createLead } = require('./_lib/bitrix');
 const store = require('./_lib/leads-db');
+const mailer = require('./_lib/mailer');
 
 const MAX_BODY = 16 * 1024;
 const IP_LIMIT = [5, 10 * 60 * 1000]; // 5 requests / 10 min / address
@@ -88,6 +89,7 @@ async function handle(req, res, ctx) {
     const r = await createLead(cfg.config, lead);
     log.info('lead created', { id: ctx.id, ip: ctx.ip, crmId: r.id, lang: lead.lang, utmSource: lead.utm.UTM_SOURCE });
     await store.markCrm(savedId, { ok: true, crmId: r.id });
+    await mailer.sendResultsCode(lead, mailer.newCode()); // best-effort: never fails the lead
     return res.status(200).json({ ok: true });
   } catch (e) {
     limiter.forget(phoneKey); // a failed attempt must not block the visitor's retry
